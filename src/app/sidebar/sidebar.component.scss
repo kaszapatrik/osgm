@@ -1,0 +1,55 @@
+::ng-deep .logo:link, ::ng-deep .logo:visited {
+    text-decoration: none;
+    color: inherit;
+}
+::ng-deep .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    bottom: -32px;
+    width: 100%;
+    height: 32px;
+    border-top: 1px solid #888;
+    background: #F0F0F0;
+    background: -moz-linear-gradient(top, #f0f0f0 0%, #d2d2d2 100%);
+    background: -webkit-linear-gradient(top, #f0f0f0 0%,#d2d2d2 100%);
+    background: linear-gradient(to bottom, #f0f0f0 0%,#d2d2d2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#d2d2d2',GradientType=0 );
+    z-index: 6;
+    cursor: pointer;
+    user-select: none;
+    font-size: 10px;
+}
+
+::ng-deep .panel-sidebar ul {
+    list-style-type: none;
+    position: relative;
+}
+
+::ng-deep .panel-sidebar {
+    min-width: 144px;
+    width: 180px;
+    max-width: 40vw;
+    height: calc(100vh - 32px - 28px);
+    margin-bottom: -2px;
+    padding-top: 28px;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    background-color: #FFF;
+    border-right: 1px solid #888;
+}
+
+::ng-deep .panel-sidebar .resource-groups {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(100vh - 44px - 16px);
+    padding: 2px 8px 0 24px;
+    margin-top: 0;
+    position: relative;
+    white-space: nowrap;
+    overflow: auto;
+}

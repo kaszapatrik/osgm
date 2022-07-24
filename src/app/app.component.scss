@@ -1,0 +1,14 @@
+.app-container {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    border: none;
+    box-sizing: border-box;
+}
