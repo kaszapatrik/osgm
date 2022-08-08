@@ -1,55 +1,169 @@
-::ng-deep .logo:link, ::ng-deep .logo:visited {
-    text-decoration: none;
-    color: inherit;
-}
-::ng-deep .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    left: 0;
-    bottom: -32px;
-    width: 100%;
-    height: 32px;
-    border-top: 1px solid #888;
-    background: #F0F0F0;
-    background: -moz-linear-gradient(top, #f0f0f0 0%, #d2d2d2 100%);
-    background: -webkit-linear-gradient(top, #f0f0f0 0%,#d2d2d2 100%);
-    background: linear-gradient(to bottom, #f0f0f0 0%,#d2d2d2 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#d2d2d2',GradientType=0 );
-    z-index: 6;
-    cursor: pointer;
-    user-select: none;
-    font-size: 10px;
-}
+::ng-deep {
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        bottom: -32px;
+        width: 100%;
+        height: 32px;
+        border-top: 1px solid #888;
+        background: #F0F0F0;
+        background: -moz-linear-gradient(top, #f0f0f0 0%, #d2d2d2 100%);
+        background: -webkit-linear-gradient(top, #f0f0f0 0%,#d2d2d2 100%);
+        background: linear-gradient(to bottom, #f0f0f0 0%,#d2d2d2 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#d2d2d2',GradientType=0 );
+        z-index: 6;
+        cursor: pointer;
+        user-select: none;
+        font-size: 10px;
 
-::ng-deep .panel-sidebar ul {
-    list-style-type: none;
-    position: relative;
-}
+        &:link, &:visited {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
 
-::ng-deep .panel-sidebar {
-    min-width: 144px;
-    width: 180px;
-    max-width: 40vw;
-    height: calc(100vh - 32px - 28px);
-    margin-bottom: -2px;
-    padding-top: 28px;
-    position: relative;
-    z-index: 1;
-    overflow: visible;
-    background-color: #FFF;
-    border-right: 1px solid #888;
-}
+    .panel-sidebar {
+        min-width: 144px;
+        width: 180px;
+        max-width: 40vw;
+        height: calc(100vh - 32px - 28px);
+        margin-bottom: -2px;
+        padding-top: 28px;
+        position: relative;
+        z-index: 1;
+        overflow: visible;
+        background-color: #FFF;
+        border-right: 1px solid #888;
 
-::ng-deep .panel-sidebar .resource-groups {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    height: calc(100vh - 44px - 16px);
-    padding: 2px 8px 0 24px;
-    margin-top: 0;
-    position: relative;
-    white-space: nowrap;
-    overflow: auto;
+        .resource-groups {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            height: calc(100vh - 44px - 16px);
+            padding: 6px 8px 0 24px;
+            margin-top: 0;
+            position: relative;
+            white-space: nowrap;
+            overflow: auto;
+            user-select: none;
+        
+            ul {
+                list-style-type: none;
+                position: relative;
+
+                &.outer-group {
+                    display: block;
+                    min-height: 16px;
+
+                    li {
+                        &.inner-group {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            min-height: 16px;
+                            padding-left: 22px;
+                            position: relative;
+                            top: 0;
+                            box-sizing: border-box;
+                            white-space: nowrap;
+                            cursor: pointer;
+
+                            // cursor hover blink
+                            &:hover {
+                                animation: anim-blink 0.05s linear;
+                            }
+
+                            // dotted line center
+                            &:before {
+                                content: '';
+                                display: inline-block;
+                                background: transparent url('/assets/images/line_dotted_center.png') no-repeat 2px 0;
+                                width: 20px;
+                                height: 16px;
+                                position: absolute;
+                                left: -20px;
+                                top: -3px;
+                            }
+                            // dotted line top
+                            &:first-child:before {
+                                background: transparent url('/assets/images/line_dotted_start.png') no-repeat 2px 0;
+                            }
+                            // dotted line bottom
+                            &:last-child:before {
+                                background: transparent url('/assets/images/line_dotted_end.png') no-repeat 2px 0;
+                            }
+
+                            // all contained element and not expandable items style
+                            &.main-group:not(.expandable) {
+                                min-height: 17px;
+
+                                &, &:not(.main-group) {
+                                    font-family: 'Arial', sans-serif;
+                                    font-weight: normal;
+                                }
+                            }
+
+                            span {
+                                padding-right: 8px;
+
+                                // plus-minus sign
+                                &:before {
+                                    content: '';
+                                    display: inline-block;
+                                    // TODO after group structure is done
+                                    //background: transparent url('/assets/images/icon_sign_plus.png') no-repeat 3px 3px;
+                                    width: 16px;
+                                    height: 16px;
+                                    position: absolute;
+                                    left: -20px;
+                                    top: 0;
+                                }
+
+                                // folder icon
+                                &:after {
+                                    content: '';
+                                    display: inline-block;
+                                    background-image: url('/assets/images/icon_folder.png');
+                                    width: 16px;
+                                    height: 16px;
+                                    position: absolute;
+                                    left: 0;
+                                    top: -1px;
+                                }
+                            }
+
+                            // unique icon - game information
+                            &.btn-game-information span:after {
+                                background-image: url('/assets/images/icon_information.png');
+                            }
+                            // unique icon - game settings
+                            &.btn-game-settings span:after {
+                                background-image: url('/assets/images/icon_settings.png');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @keyframes anim-blink {
+        0%, 100% { color: inherit; }
+        50% { color: transparent; }
+    }
+
+    .panel-left-border.resize {
+        display: block;
+        width: 8px;
+        height: 100vh;
+        position: absolute;
+        right: -8px;
+        top: 0;
+        background-color: transparent;
+        cursor: col-resize;
+        z-index: 10;
+    }
 }

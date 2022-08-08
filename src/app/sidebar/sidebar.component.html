@@ -1,8 +1,20 @@
 <div class="resource-groups">
-    <ul *ngFor="let group of resourceGroups">
-        <li>{{group}}</li>
+    <ul class="outer-group">
+        <li *ngFor="let listElement of sidebarList"
+            class="inner-group main-group"
+            [class.expandable]="listElement.isExpandable"
+            [class]="listElement?.uniqueClass"
+        >
+            <span>{{listElement.title}}</span>
+        </li>
     </ul>
 </div>
 <a href="https://tale.hu/wgm" class="logo" target="_BLANK">
     Tale.hu © Web Game Maker
 </a>
+<div class="panel-left-border resize"
+    draggable="true"
+    (dragstart)="borderResizeToggle(true)"
+    (dragend)="borderResizeToggle(false)"
+    (drag)="borderResize($event)"
+></div>
