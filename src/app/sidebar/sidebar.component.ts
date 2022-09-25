@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Globals } from '../common/globals';
+import { ResourceListInterface } from '../common/resourcelistinterface';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,21 +15,28 @@ export class SidebarComponent implements OnInit {
 
   public resourceGroups = {};
 
-  public sidebarList = [
-    { name: 'sprites', title: 'Sprites', isExpandable: true, isOpen: false, list: [] },
-    { name: 'backgrounds', title: 'Backgrounds', isExpandable: true, isOpen: false, list: [] },
-    { name: 'models', title: 'Models', isExpandable: true, isOpen: false, list: [] },
-    { name: 'materials', title: 'Materials', isExpandable: true, isOpen: false, list: [] },
-    { name: 'fonts', title: 'Fonts', isExpandable: true, isOpen: false, list: [] },
-    { name: 'sounds', title: 'Sounds', isExpandable: true, isOpen: false, list: [] },
-    { name: 'scripts', title: 'Scripts', isExpandable: true, isOpen: false, list: [] },
-    { name: 'objects', title: 'Objects', isExpandable: true, isOpen: false, list: [] },
-    { name: 'rooms', title: 'Rooms', isExpandable: true, isOpen: false, list: [] },
-    { title: 'Game Information', uniqueClass: 'btn-game-information', isExpandable: false },
-    { title: 'Global Game Settings', uniqueClass: 'btn-game-settings', isExpandable: false },
-  ];
+  private sidebarListInstance;
+  public sidebarList : Array<ResourceListInterface>;
 
   constructor() {
+    this.sidebarListInstance = Globals.getResourceListInstance();
+    this.sidebarList = Globals.getResourceList();
+
+    this.initSidebarMenu();
+  }
+
+  private initSidebarMenu() : void {
+    this.sidebarListInstance.add('sprites', 'Sprites');
+    this.sidebarListInstance.add('backgrounds', 'Backgrounds');
+    this.sidebarListInstance.add('models', 'Models');
+    this.sidebarListInstance.add('materials', 'Materials');
+    this.sidebarListInstance.add('fonts', 'Fonts');
+    this.sidebarListInstance.add('sounds', 'Sounds');
+    this.sidebarListInstance.add('scripts', 'Scripts');
+    this.sidebarListInstance.add('objects', 'Objects');
+    this.sidebarListInstance.add('rooms', 'Rooms');
+    this.sidebarListInstance.add('', 'Game Information', false, false, [], 'btn-game-information');
+    this.sidebarListInstance.add('', 'Global Game Settings', false, false, [], 'btn-game-settings');
   }
 
   ngOnInit() : void {
