@@ -60,4 +60,14 @@ export class SidebarComponent implements OnInit {
       }
     }
   }
+
+  public onRightClick(event : MouseEvent, resourceName : string) : void {
+    Globals.getContextMenuData().setMenuType(resourceName);
+    Globals.getContextMenuData().setMenuPosition(event.clientX, event.clientY);
+    Globals.getContextMenuData().setVisibility(true);
+
+    console.log(resourceName);
+
+    // TODO contextmenu to sidebar (resource management: new, delete, etc), and others
+  }
 }

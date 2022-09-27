@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Globals } from './common/globals';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,12 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   public title = 'Web Game Maker';
+  public contextMenu = Globals.getContextMenuData();
 
   constructor() {
   }
 
-  onRightClick(event : Event) : void {
+  public onRightClick(event : MouseEvent) : void {
     event.preventDefault();
-
-    // TODO contextmenu to sidebar (resource management: new, delete, etc), and others
   }
 }

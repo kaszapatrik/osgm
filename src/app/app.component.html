@@ -2,4 +2,23 @@
   <app-navbar class="panel-navbar"></app-navbar>
   <app-sidebar class="panel-sidebar"></app-sidebar>
   <app-playground class="panel-playground"></app-playground>
+
+  <div class="context-menu"
+      *ngIf="contextMenu.isVisible()"
+      [style.left]="contextMenu.getMenuPositionX()"
+      [style.top]="contextMenu.getMenuPositionY()"
+  >
+    <div class="item item-create-sprite" *ngIf="contextMenu.getMenuType() === 'sprites'">Create Sprite</div>
+    <div class="item item-duplicate">Duplicate</div>
+    <div class="separator"></div>
+    <div class="item item-create-group">Create Group</div>
+    <div class="separator"></div>
+    <div class="item item-sort-by-name">Sort by Name</div>
+    <div class="separator"></div>
+    <div class="item item-delete">Delete</div>
+    <div class="separator"></div>
+    <div class="item item-rename">Rename</div>
+    <div class="separator"></div>
+    <div class="item item-properties">Properties...</div>
+  </div>
 </div>
