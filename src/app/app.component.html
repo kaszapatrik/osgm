@@ -3,22 +3,42 @@
   <app-sidebar class="panel-sidebar"></app-sidebar>
   <app-playground class="panel-playground"></app-playground>
 
-  <div class="context-menu"
+  <div class="cm context-menu"
       *ngIf="contextMenu.isVisible()"
       [style.left]="contextMenu.getMenuPositionX()"
       [style.top]="contextMenu.getMenuPositionY()"
   >
-    <div class="item item-create-sprite" *ngIf="contextMenu.getMenuType() === 'sprites'">Create Sprite</div>
-    <div class="item item-duplicate">Duplicate</div>
-    <div class="separator"></div>
-    <div class="item item-create-group">Create Group</div>
-    <div class="separator"></div>
-    <div class="item item-sort-by-name">Sort by Name</div>
-    <div class="separator"></div>
-    <div class="item item-delete">Delete</div>
-    <div class="separator"></div>
-    <div class="item item-rename">Rename</div>
-    <div class="separator"></div>
-    <div class="item item-properties">Properties...</div>
+    <div class="cm item item-create-sprite" *ngIf="contextMenu.getMenuType() === 'sprites'">Create Sprite</div>
+    <div class="cm item item-create-sound" *ngIf="contextMenu.getMenuType() === 'sounds'">Create Sound</div>
+    <div class="cm item item-create-background" *ngIf="contextMenu.getMenuType() === 'backgrounds'">Create Background</div>
+    <div class="cm item item-create-model" *ngIf="contextMenu.getMenuType() === 'models'">Create Model</div>
+    <div class="cm item item-create-material" *ngIf="contextMenu.getMenuType() === 'materials'">Create Material</div>
+    <div class="cm item item-create-script" *ngIf="contextMenu.getMenuType() === 'scripts'">Create Script</div>
+    <div class="cm item item-create-font" *ngIf="contextMenu.getMenuType() === 'fonts'">Create Font</div>
+    <div class="cm item item-create-object" *ngIf="contextMenu.getMenuType() === 'objects'">Create Object</div>
+    <div class="cm item item-create-room" *ngIf="contextMenu.getMenuType() === 'rooms'">Create Room</div>
+    <div class="cm item item-duplicate"
+      [class.disabled]="contextMenu.getIsGroup()"
+    >Duplicate</div>
+    <div class="cm" *ngIf="contextMenu.getMenuType() === 'scripts'">
+      <div class="cm separator"></div>
+      <div class="cm item item-export-all-scripts">Export All Scripts...</div>
+    </div>
+    <div class="cm separator"></div>
+    <div class="cm item item-create-group">Create Group</div>
+    <div class="cm separator"></div>
+    <div class="cm item item-sort-by-name">Sort by Name</div>
+    <div class="cm separator"></div>
+    <div class="cm item item-delete"
+      [class.disabled]="contextMenu.getIsGroup()"
+    >Delete</div>
+    <div class="cm separator"></div>
+    <div class="cm item item-rename"
+      [class.disabled]="contextMenu.getIsGroup()"
+    >Rename</div>
+    <div class="cm separator"></div>
+    <div class="cm item item-properties"
+      [class.disabled]="contextMenu.getIsGroup()"
+    >Properties...</div>
   </div>
 </div>

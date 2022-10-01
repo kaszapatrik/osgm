@@ -4,7 +4,7 @@
             class="inner-group main-group"
             [class.expandable]="listElement.isExpandable"
             [class]="listElement?.uniqueClass"
-            (contextmenu)="onRightClick($event, listElement.name)"
+            (contextmenu)="onRightClick($event, listElement.name, true)"
         >
             <span>{{listElement.title}}</span>
         </li>

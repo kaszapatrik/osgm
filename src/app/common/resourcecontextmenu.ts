@@ -6,6 +6,8 @@ export class ResourceContextMenu {
     public constructor() {
         this.resourceContextMenu = {
             isVisible: false,
+            isShown: false,
+            isGroup: false,
             contextMenuType: '',
             positionX: 0,
             positionY : 0,
@@ -18,6 +20,14 @@ export class ResourceContextMenu {
 
     public isVisible() : boolean {
         return this.resourceContextMenu.isVisible;
+    }
+
+    public setShown(isShown : boolean) : void {
+        this.resourceContextMenu.isShown = isShown;
+    }
+
+    public isShown() : boolean {
+        return this.resourceContextMenu.isShown;
     }
 
     public setMenuType(menuType : string) : void {
@@ -39,5 +49,13 @@ export class ResourceContextMenu {
 
     public getMenuPositionY() : string {
         return `${this.resourceContextMenu.positionY}px`;
+    }
+
+    public setIsGroup(isGroup : boolean) : void {
+        this.resourceContextMenu.isGroup = isGroup;
+    }
+
+    public getIsGroup() : boolean {
+        return this.resourceContextMenu.isGroup;
     }
 }

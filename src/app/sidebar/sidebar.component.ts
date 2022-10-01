@@ -18,6 +18,8 @@ export class SidebarComponent implements OnInit {
   private sidebarListInstance;
   public sidebarList : Array<ResourceListInterface>;
 
+  public contextMenu = Globals.getContextMenuData();
+
   constructor() {
     this.sidebarListInstance = Globals.getResourceListInstance();
     this.sidebarList = Globals.getResourceList();
@@ -27,12 +29,12 @@ export class SidebarComponent implements OnInit {
 
   private initSidebarMenu() : void {
     this.sidebarListInstance.add('sprites', 'Sprites');
+    this.sidebarListInstance.add('sounds', 'Sounds');
     this.sidebarListInstance.add('backgrounds', 'Backgrounds');
     this.sidebarListInstance.add('models', 'Models');
     this.sidebarListInstance.add('materials', 'Materials');
-    this.sidebarListInstance.add('fonts', 'Fonts');
-    this.sidebarListInstance.add('sounds', 'Sounds');
     this.sidebarListInstance.add('scripts', 'Scripts');
+    this.sidebarListInstance.add('fonts', 'Fonts');
     this.sidebarListInstance.add('objects', 'Objects');
     this.sidebarListInstance.add('rooms', 'Rooms');
     this.sidebarListInstance.add('', 'Game Information', false, false, [], 'btn-game-information');
@@ -61,13 +63,18 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  public onRightClick(event : MouseEvent, resourceName : string) : void {
-    Globals.getContextMenuData().setMenuType(resourceName);
-    Globals.getContextMenuData().setMenuPosition(event.clientX, event.clientY);
-    Globals.getContextMenuData().setVisibility(true);
+  public onRightClick(event : MouseEvent, resourceName : string, isGroup = false) : void {
+    if (resourceName.length === 0) {
+      // no context menu on settings
+      return;
+    }
 
-    console.log(resourceName);
+    this.contextMenu.setMenuType(resourceName);
+    this.contextMenu.setMenuPosition(event.clientX, event.clientY);
+    this.contextMenu.setVisibility(true);
+    this.contextMenu.setShown(false);
+    this.contextMenu.setIsGroup(isGroup);
 
-    // TODO contextmenu to sidebar (resource management: new, delete, etc), and others
+    // TODO contextmenu functions to sidebar (resource management: new, delete, etc), and others
   }
 }
