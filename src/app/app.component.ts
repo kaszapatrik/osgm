@@ -37,14 +37,17 @@ export class AppComponent {
     }
   }
 
+  /**
+   * when context menu is appeared, and user click out, we hide the menu
+   * @param event 
+   */
   private checkContextMenuOutClick(event : MouseEvent) : void {
     if (event.target !== null) {
       const target = event.target as Element,
         isOnMenuClick = target.classList.contains('cm');
 
       if (!isOnMenuClick) {
-        this.contextMenu.setVisibility(false);
-        this.contextMenu.setShown(false);
+        this.contextMenu.hide();
       }
     }
   }

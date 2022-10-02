@@ -51,12 +51,12 @@ export class SidebarComponent implements OnInit {
 
   public borderResize(event : MouseEvent) {
     if (this.isBorderCatched) {
-      // save drag x
+      // save drag X
       if (event.clientX !== 0) {
         this.borderDragX = event.clientX;
       }
 
-      // set sidebar width to drag x
+      // set sidebar width to drag X
       if (this.sidebarElementRef !== null) {
         this.sidebarElementRef.style.width = `${this.borderDragX}px`;
       }
@@ -65,7 +65,7 @@ export class SidebarComponent implements OnInit {
 
   public onRightClick(event : MouseEvent, resourceName : string, isGroup = false) : void {
     if (resourceName.length === 0) {
-      // no context menu on settings
+      // no context menu on settings items
       return;
     }
 
@@ -74,7 +74,5 @@ export class SidebarComponent implements OnInit {
     this.contextMenu.setVisibility(true);
     this.contextMenu.setShown(false);
     this.contextMenu.setIsGroup(isGroup);
-
-    // TODO contextmenu functions to sidebar (resource management: new, delete, etc), and others
   }
 }

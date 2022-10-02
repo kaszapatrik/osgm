@@ -23,4 +23,10 @@ export class ResourceList {
     public get() : Array<ResourceListInterface> {
         return this.resourceList;
     }
+
+    public addItem(group : string) : void {
+        console.log('add new ', group);
+
+        // TODO
+    }
 }
