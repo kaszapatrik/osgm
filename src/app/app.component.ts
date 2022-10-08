@@ -14,13 +14,17 @@ export class AppComponent {
   constructor() {
   }
 
-  ngOnInit() {
-    document.body.addEventListener('click', (event : MouseEvent) => { this.onLeftClick(event); });
-  }
+  ngOnInit() {}
 
-  private onLeftClick(event : MouseEvent) : void {
+  public onLeftClick(event : MouseEvent) : void {
     if (this.contextMenu.isVisible()) {
       this.checkContextMenuOutClick(event);
+    }
+
+    const target = event.target as HTMLElement;
+
+    if (target !== null && !target.classList.contains('item')) {
+      Globals.getResourceListInstance().setSelectedItem(null);
     }
   }
 

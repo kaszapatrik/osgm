@@ -2,8 +2,8 @@ import { ResourceList } from './resourcelist';
 import { ResourceContextMenu } from './resourcecontextmenu';
 
 export class Globals {
-    public static resourceList : ResourceList;
     public static contextMenu : ResourceContextMenu;
+    public static resourceList : ResourceList;
 
     public static getResourceListInstance() : ResourceList {
         if (typeof Globals.resourceList === 'undefined') {

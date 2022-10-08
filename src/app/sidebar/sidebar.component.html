@@ -3,10 +3,21 @@
         <li *ngFor="let listElement of sidebarList"
             class="inner-group main-group"
             [class.expandable]="listElement.isExpandable"
+            [class.open]="listElement.isOpen"
+            [class.selected]="listElement.name === sidebarListInstance.getSelectedItem()"
             [class]="listElement?.uniqueClass"
             (contextmenu)="onRightClick($event, listElement.name, true)"
+            (click)="onLeftClick($event, listElement.name)"
+            (dblclick)="onLeftClick($event, listElement.name, true)"
         >
-            <span>{{listElement.title}}</span>
+            <div class="item btn-toggle"></div>
+            <span class="item item-name">{{listElement.title}}</span>
+            <ul class="inner-group" *ngIf="listElement.isOpen">
+                <!-- TODO dummy replacement to real listElement.list elements -->
+                <li class="item" [attr.data-id]="listElement.name + '0'" [class.selected]="listElement.name + '0' === sidebarListInstance.getSelectedItem()"><span class="item item-name">sprite0</span></li>
+                <li class="item" [attr.data-id]="listElement.name + '1'" [class.selected]="listElement.name + '1' === sidebarListInstance.getSelectedItem()"><span class="item item-name">sprite1</span></li>
+                <li class="item" [attr.data-id]="listElement.name + '2'" [class.selected]="listElement.name + '2' === sidebarListInstance.getSelectedItem()"><span class="item item-name">sprite2</span></li>
+            </ul>
         </li>
     </ul>
 </div>

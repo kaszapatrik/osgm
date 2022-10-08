@@ -57,12 +57,32 @@
                 &.outer-group {
                     display: block;
                     min-height: 16px;
+                    padding-right: 8px;
 
                     li {
+                        &.expandable {
+                            .btn-toggle {
+                                display: inline-block;
+                                position: absolute;
+                                left: -20px;
+                                top: -1px;
+                                width: 16px;
+                                height: 16px;
+                                background-image: url('/assets/images/icon_sign_plus.png');
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                cursor: pointer;
+                            }
+
+                            &.open {
+                                .btn-toggle {
+                                    background-image: url('/assets/images/icon_sign_minus.png');
+                                }
+                            }
+                        }
+
                         &.inner-group {
-                            display: flex;
-                            align-items: center;
-                            justify-content: flex-start;
+                            display: block;
                             min-height: 16px;
                             padding-left: 22px;
                             position: relative;
@@ -72,7 +92,7 @@
                             cursor: pointer;
 
                             // cursor hover blink
-                            &:hover {
+                            & > span:hover {
                                 animation: anim-blink 0.05s linear;
                             }
 
@@ -99,38 +119,23 @@
                             // all contained element and not expandable items style
                             &.main-group:not(.expandable) {
                                 min-height: 17px;
-
-                                &, &:not(.main-group) {
-                                    font-family: 'Arial', sans-serif;
-                                    font-weight: normal;
-                                }
+                                font-family: 'Arial', sans-serif;
+                                font-weight: normal;
                             }
 
                             span {
-                                padding-right: 8px;
-
-                                // plus-minus sign
-                                &:before {
-                                    content: '';
-                                    display: inline-block;
-                                    // TODO after group structure is done
-                                    //background: transparent url('/assets/images/icon_sign_plus.png') no-repeat 3px 3px;
-                                    width: 16px;
-                                    height: 16px;
-                                    position: absolute;
-                                    left: -20px;
-                                    top: 0;
-                                }
+                                position: relative;
+                                top: 3px;
 
                                 // folder icon
                                 &:after {
                                     content: '';
-                                    display: inline-block;
                                     background-image: url('/assets/images/icon_folder.png');
+                                    display: inline-block;
                                     width: 16px;
                                     height: 16px;
                                     position: absolute;
-                                    left: 0;
+                                    left: -21px;
                                     top: -1px;
                                 }
                             }
@@ -142,6 +147,91 @@
                             // unique icon - game settings
                             &.btn-game-settings span:after {
                                 background-image: url('/assets/images/icon_settings.png');
+                            }
+
+                            &.selected > span {
+                                outline: 1px solid #359AFF;
+                                background-color: #359AFF;
+                                color: #FFF;
+                            }
+
+                            &.expandable.open {
+                                & > span {
+                                    // folder icon
+                                    &:after {
+                                        background-image: url('/assets/images/icon_folder_open.png');
+                                    }
+                                }
+
+                                ul {
+                                    display: block;
+                                    position: relative;
+                                    top: 4px;
+                                    font-family: 'Arial', sans-serif;
+                                    font-weight: normal;
+                                    padding: 4px 0 4px 18px;
+
+                                    &:before {
+                                        content: "";
+                                        display: block;
+                                        width: 16px;
+                                        height: 100%;
+                                        position: absolute;
+                                        left: -42px;
+                                        top: 0;
+                                        margin-left: 2px;
+                                        margin-top: 1px;
+                                        background-color: transparent;
+                                        background-image: url('/assets/images/line_dotted_vertical.png');
+                                        background-repeat: repeat-y;
+                                        background-position: left top;
+                                    }
+
+                                    li {
+                                        display: block;
+                                        height: 16px;
+                                        padding-top: 0;
+                                        position: relative;
+
+                                        &:before {
+                                            content: "";
+                                            display: block;
+                                            width: 16px;
+                                            height: 16px;
+                                            position: absolute;
+                                            left: -40px;
+                                            top: -3px;
+                                            margin-left: 2px;
+                                            background-color: transparent;
+                                            background-image: url('/assets/images/line_dotted_vertical.png');
+                                            background-repeat: no-repeat;
+                                            background-position: left top;
+                                        }
+
+                                        &:not(:last-child):before {
+                                            background-image: url('/assets/images/line_dotted_center.png');
+                                        }
+
+                                        &:last-child:before {
+                                            background-image: url('/assets/images/line_dotted_end.png');
+                                        }
+                                        
+                                        // cursor hover blink
+                                        & > span:hover {
+                                            animation: anim-blink 0.05s linear;
+                                        }
+
+                                        &.selected > span {
+                                            outline: 1px solid #359AFF;
+                                            background-color: #359AFF;
+                                            color: #FFF;
+                                        }
+
+                                        & > span:after {
+                                            background-image: none;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

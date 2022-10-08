@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
 
   public resourceGroups = {};
 
-  private sidebarListInstance;
+  public sidebarListInstance;
   public sidebarList : Array<ResourceListInterface>;
 
   public contextMenu = Globals.getContextMenuData();
@@ -37,8 +37,11 @@ export class SidebarComponent implements OnInit {
     this.sidebarListInstance.add('fonts', 'Fonts');
     this.sidebarListInstance.add('objects', 'Objects');
     this.sidebarListInstance.add('rooms', 'Rooms');
-    this.sidebarListInstance.add('', 'Game Information', false, false, [], 'btn-game-information');
-    this.sidebarListInstance.add('', 'Global Game Settings', false, false, [], 'btn-game-settings');
+    this.sidebarListInstance.add('game-info', 'Game Information', false, false, [], 'btn-game-information');
+    this.sidebarListInstance.add('game-settings', 'Global Game Settings', false, false, [], 'btn-game-settings');
+
+    this.sidebarListInstance.addItem('sprites', {title: 'Sprite1'});
+    this.sidebarListInstance.addItem('sprites', {title: 'Sprite2'});
   }
 
   ngOnInit() : void {
@@ -74,5 +77,54 @@ export class SidebarComponent implements OnInit {
     this.contextMenu.setVisibility(true);
     this.contextMenu.setShown(false);
     this.contextMenu.setIsGroup(isGroup);
+
+    const target = event.target as HTMLElement;
+    if (target !== null) {
+      const targetContainer = target.closest('li');
+
+      if (targetContainer !== null) {
+        // main groups selection
+        if (typeof targetContainer.dataset['id'] === 'undefined') {
+          this.sidebarListInstance.setSelectedItem(resourceName);
+        }
+        // all other group and item selection
+        else {
+          this.sidebarListInstance.setSelectedItem(targetContainer.dataset['id']);
+        }
+      }
+    }
+  }
+
+  public onLeftClick(event : MouseEvent, resourceName : string, isDoubleClick = false) : void {
+    const resource = Globals.getResourceListInstance().getGroup(resourceName);
+    if (resource !== null) {
+      const target = event.target as HTMLElement,
+        isToggleButtonClicked = isDoubleClick || (target !== null && target.classList.contains('btn-toggle'));
+
+      if (target !== null) {
+        const targetContainer = target.closest('li');
+
+        if (targetContainer !== null) {
+          // main groups click/selection
+          if (typeof targetContainer.dataset['id'] === 'undefined') {
+            if (isToggleButtonClicked) {
+              // TODO getter
+              resource.isOpen = !resource.isOpen;
+            } else {
+              Globals.getResourceListInstance().setSelectedItem(resourceName);
+            }
+          }
+          // all other group and item click/selection
+          else {
+            if (isToggleButtonClicked) {
+              // TODO
+              console.log(`open subfolder or open item properties of ${resourceName} group id: ${targetContainer.dataset['id']}`);
+            } else {
+              Globals.getResourceListInstance().setSelectedItem(targetContainer.dataset['id']);
+            }
+          }
+        }
+      }
+    }
   }
 }
