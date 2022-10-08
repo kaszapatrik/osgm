@@ -108,8 +108,7 @@ export class SidebarComponent implements OnInit {
           // main groups click/selection
           if (typeof targetContainer.dataset['id'] === 'undefined') {
             if (isToggleButtonClicked) {
-              // TODO getter
-              resource.isOpen = !resource.isOpen;
+              this.sidebarListInstance.toggleGroup(resource);
             } else {
               Globals.getResourceListInstance().setSelectedItem(resourceName);
             }

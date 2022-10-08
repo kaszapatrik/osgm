@@ -17,7 +17,7 @@ export class ResourceList {
             isExpandable: isExpandable,
             isOpen: isOpen,
             list: list,
-            uniqueClass: uniqueClass
+            uniqueClass: uniqueClass,
         };
 
         this.resourceList.push(resource);
@@ -53,5 +53,9 @@ export class ResourceList {
 
     public getSelectedItem() : string | null {
         return this.selectedItem;
+    }
+
+    public toggleGroup(group : ResourceListInterface) : void {
+        group.isOpen = !group.isOpen;
     }
 }

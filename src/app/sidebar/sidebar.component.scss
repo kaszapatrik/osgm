@@ -230,6 +230,19 @@
                                         & > span:after {
                                             background-image: none;
                                         }
+
+                                        & > .icon-block {
+                                            display: inline-block;
+                                            position: absolute;
+                                            left: -20px;
+                                            top: -1px;
+                                            width: 16px;
+                                            height: 16px;
+                                            background-image: none;
+                                            background-repeat: no-repeat;
+                                            background-position: center;
+                                            cursor: pointer;
+                                        }
                                     }
                                 }
                             }

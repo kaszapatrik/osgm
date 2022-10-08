@@ -14,9 +14,9 @@
             <span class="item item-name">{{listElement.title}}</span>
             <ul class="inner-group" *ngIf="listElement.isOpen">
                 <!-- TODO dummy replacement to real listElement.list elements -->
-                <li class="item" [attr.data-id]="listElement.name + '0'" [class.selected]="listElement.name + '0' === sidebarListInstance.getSelectedItem()"><span class="item item-name">sprite0</span></li>
-                <li class="item" [attr.data-id]="listElement.name + '1'" [class.selected]="listElement.name + '1' === sidebarListInstance.getSelectedItem()"><span class="item item-name">sprite1</span></li>
-                <li class="item" [attr.data-id]="listElement.name + '2'" [class.selected]="listElement.name + '2' === sidebarListInstance.getSelectedItem()"><span class="item item-name">sprite2</span></li>
+                <li class="item" [attr.data-id]="listElement.name + '0'" [class.selected]="listElement.name + '0' === sidebarListInstance.getSelectedItem()"><div class="item icon-block" [style.background-image]="'url(/assets/images/icon_duplicate.png)'"></div><span class="item item-name">sprite0</span></li>
+                <li class="item" [attr.data-id]="listElement.name + '1'" [class.selected]="listElement.name + '1' === sidebarListInstance.getSelectedItem()"><div class="item icon-block" [style.background-image]="'none'"></div><span class="item item-name">sprite1</span></li>
+                <li class="item" [attr.data-id]="listElement.name + '2'" [class.selected]="listElement.name + '2' === sidebarListInstance.getSelectedItem()"><div class="item icon-block"></div><span class="item item-name">sprite2</span></li>
             </ul>
         </li>
     </ul>
