@@ -4,6 +4,6 @@ export interface ResourceListInterface {
     isExpandable : boolean;
     isOpen ?: boolean;
     // TODO
-    list ?: Array<any>;
+    list : Array<any>;
     uniqueClass ?: string;
 }

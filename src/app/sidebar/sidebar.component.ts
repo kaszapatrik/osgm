@@ -39,9 +39,6 @@ export class SidebarComponent implements OnInit {
     this.sidebarListInstance.add('rooms', 'Rooms');
     this.sidebarListInstance.add('game-info', 'Game Information', false, false, [], 'btn-game-information');
     this.sidebarListInstance.add('game-settings', 'Global Game Settings', false, false, [], 'btn-game-settings');
-
-    this.sidebarListInstance.addItem('sprites', {title: 'Sprite1'});
-    this.sidebarListInstance.addItem('sprites', {title: 'Sprite2'});
   }
 
   ngOnInit() : void {

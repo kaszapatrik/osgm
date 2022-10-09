@@ -1,4 +1,5 @@
 import { ResourceListInterface } from './resourcelistinterface';
+import { Globals } from './globals';
 
 export class ResourceList {
     private resourceList : Array<ResourceListInterface>;
@@ -37,14 +38,68 @@ export class ResourceList {
         return null;
     }
 
-    public addItem(groupName : string, item : object = {}) : void {
+    private getGroupIconImage(groupName : string) : string | null {
+        const icons : {[key : string] : string | null} = {
+            sprites: null,
+            sounds: '/assets/images/icon_sound.png',
+            backgrounds: null,
+            models: '/assets/images/icon_model.png',
+            materials: '/assets/images/icon_material.png',
+            scripts: '/assets/images/icon_script.png',
+            fonts: '/assets/images/icon_font.png',
+            objects: null,
+            rooms: '/assets/images/icon_room.png',
+        };
+
+        if (icons.hasOwnProperty(groupName)) {
+            return icons[groupName];
+        }
+        else {
+            return null;
+        }
+    }
+
+    private getGroupItemName(groupName : string, id : number) : string {
+        const names : {[key : string] : string} = {
+            sprites: 'sprite',
+            sounds: 'sound',
+            backgrounds: 'background',
+            models: 'model',
+            materials: 'material',
+            scripts: 'script',
+            fonts: 'font',
+            objects: 'object',
+            rooms: 'room',
+        };
+
+        if (names.hasOwnProperty(groupName)) {
+            return `${names[groupName]}${id}`;
+        }
+        else {
+            return '';
+        }
+    }
+
+    public addItem(groupName : string, item : {[key : string] : any} = {}) : void {
         const resourceGroup = this.getGroup(groupName);
 
         if (resourceGroup === null) {
             return;
         }
 
-        resourceGroup.list?.push(item);
+        if (!item.hasOwnProperty('id')) {
+            item['id'] = Globals.getUniqueId(groupName);
+        }
+
+        if (!item.hasOwnProperty('title')) {
+            item['title'] = this.getGroupItemName(groupName, item['id']);
+        }
+
+        if (!item.hasOwnProperty('image')) {
+            item['image'] = this.getGroupIconImage(groupName);
+        }
+
+        resourceGroup.list.push(item);
     }
 
     public setSelectedItem(name : string | null) : void {
@@ -55,7 +110,26 @@ export class ResourceList {
         return this.selectedItem;
     }
 
-    public toggleGroup(group : ResourceListInterface) : void {
-        group.isOpen = !group.isOpen;
+    public toggleGroup(groupName :  string | ResourceListInterface, value : null | boolean = null) : void {
+        let group;
+        if (typeof groupName === 'string') {
+            group = this.getGroup(groupName);
+        } else {
+            group = groupName;
+        }
+
+        if (!group || group.list.length === 0) {
+            return;
+        }
+
+        if (value === null) {
+            group.isOpen = !group.isOpen;
+        } else {
+            group.isOpen = value;
+        }
+    }
+
+    public openGroup(groupName : string | ResourceListInterface) : void {
+        this.toggleGroup(groupName, true);
     }
 }

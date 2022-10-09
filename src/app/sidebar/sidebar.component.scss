@@ -154,6 +154,12 @@
                                 background-color: #359AFF;
                                 color: #FFF;
                             }
+                            // TODO sidebar outclick = not active
+                            &.selected.inactive > span {
+                                outline: 2px solid #F0F0F0;
+                                background-color: #F0F0F0;
+                                color: #000;
+                            }
 
                             &.expandable.open {
                                 & > span {
@@ -163,6 +169,22 @@
                                     }
                                 }
 
+                                &:not(:last-child) ul:before {
+                                    content: "";
+                                    display: block;
+                                    width: 16px;
+                                    height: 100%;
+                                    position: absolute;
+                                    left: -42px;
+                                    top: 0;
+                                    margin-left: 2px;
+                                    margin-top: 1px;
+                                    background-color: transparent;
+                                    background-image: url('/assets/images/line_dotted_vertical.png');
+                                    background-repeat: repeat-y;
+                                    background-position: left top;
+                                }
+
                                 ul {
                                     display: block;
                                     position: relative;
@@ -170,22 +192,6 @@
                                     font-family: 'Arial', sans-serif;
                                     font-weight: normal;
                                     padding: 4px 0 4px 18px;
-
-                                    &:before {
-                                        content: "";
-                                        display: block;
-                                        width: 16px;
-                                        height: 100%;
-                                        position: absolute;
-                                        left: -42px;
-                                        top: 0;
-                                        margin-left: 2px;
-                                        margin-top: 1px;
-                                        background-color: transparent;
-                                        background-image: url('/assets/images/line_dotted_vertical.png');
-                                        background-repeat: repeat-y;
-                                        background-position: left top;
-                                    }
 
                                     li {
                                         display: block;
@@ -226,6 +232,12 @@
                                             background-color: #359AFF;
                                             color: #FFF;
                                         }
+                                        // TODO sidebar outclick = not active
+                                        &.selected.inactive > span {
+                                            outline: 2px solid #F0F0F0;
+                                            background-color: #F0F0F0;
+                                            color: #000;
+                                        }
 
                                         & > span:after {
                                             background-image: none;
@@ -241,6 +253,7 @@
                                             background-image: none;
                                             background-repeat: no-repeat;
                                             background-position: center;
+                                            background-size: contain;
                                             cursor: pointer;
                                         }
                                     }

@@ -104,8 +104,10 @@ export class ResourceContextMenu {
     }
 
     private addItem() : void {
-        const group = this.getMenuType();
-        Globals.getResourceListInstance().addItem(group);
+        const groupName = this.getMenuType();
+        Globals.getResourceListInstance().addItem(groupName);
+
+        Globals.getResourceListInstance().openGroup(groupName);
     }
 
     private sortGroup() : void {
