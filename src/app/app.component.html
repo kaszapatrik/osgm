@@ -11,15 +11,60 @@
       [style.left]="contextMenu.getMenuPositionX()"
       [style.top]="contextMenu.getMenuPositionY()"
   >
-    <div class="cm item item-create-sprite" *ngIf="contextMenu.getMenuType() === 'sprites'" (click)="contextMenu.click($event, 'addItem')">Create Sprite</div>
-    <div class="cm item item-create-sound" *ngIf="contextMenu.getMenuType() === 'sounds'" (click)="contextMenu.click($event, 'addItem')">Create Sound</div>
-    <div class="cm item item-create-background" *ngIf="contextMenu.getMenuType() === 'backgrounds'" (click)="contextMenu.click($event, 'addItem')">Create Background</div>
-    <div class="cm item item-create-model" *ngIf="contextMenu.getMenuType() === 'models'" (click)="contextMenu.click($event, 'addItem')">Create Model</div>
-    <div class="cm item item-create-material" *ngIf="contextMenu.getMenuType() === 'materials'" (click)="contextMenu.click($event, 'addItem')">Create Material</div>
-    <div class="cm item item-create-script" *ngIf="contextMenu.getMenuType() === 'scripts'" (click)="contextMenu.click($event, 'addItem')">Create Script</div>
-    <div class="cm item item-create-font" *ngIf="contextMenu.getMenuType() === 'fonts'" (click)="contextMenu.click($event, 'addItem')">Create Font</div>
-    <div class="cm item item-create-object" *ngIf="contextMenu.getMenuType() === 'objects'" (click)="contextMenu.click($event, 'addItem')">Create Object</div>
-    <div class="cm item item-create-room" *ngIf="contextMenu.getMenuType() === 'rooms'" (click)="contextMenu.click($event, 'addItem')">Create Room</div>
+    <div class="cm item item-create-sprite"
+      *ngIf="contextMenu.getMenuType() === 'sprites'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Sprite
+    </div>
+    <div class="cm item item-create-sound"
+      *ngIf="contextMenu.getMenuType() === 'sounds'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Sound
+    </div>
+    <div class="cm item item-create-background"
+      *ngIf="contextMenu.getMenuType() === 'backgrounds'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Background
+    </div>
+    <div class="cm item item-create-model"
+      *ngIf="contextMenu.getMenuType() === 'models'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Model
+    </div>
+    <div class="cm item item-create-material"
+      *ngIf="contextMenu.getMenuType() === 'materials'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Material
+    </div>
+    <div class="cm item item-create-script"
+      *ngIf="contextMenu.getMenuType() === 'scripts'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Script
+    </div>
+    <div class="cm item item-create-font"
+      *ngIf="contextMenu.getMenuType() === 'fonts'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Font
+    </div>
+    <div class="cm item item-create-object"
+      *ngIf="contextMenu.getMenuType() === 'objects'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Object
+    </div>
+    <div class="cm item item-create-room"
+      *ngIf="contextMenu.getMenuType() === 'rooms'"
+      (click)="contextMenu.click($event, 'addItem')"
+    >
+      {{contextMenu.getIsGroup() ? 'Create' : 'Insert'}} Room
+    </div>
 
     <div class="cm item item-duplicate"
       [class.disabled]="contextMenu.getIsGroup()"

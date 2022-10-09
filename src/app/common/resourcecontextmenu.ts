@@ -10,6 +10,7 @@ export class ResourceContextMenu {
             isShown: false,
             isGroup: false,
             contextMenuType: '',
+            selectedItemId: null,
             positionX: 0,
             positionY : 0,
         };
@@ -63,6 +64,22 @@ export class ResourceContextMenu {
         return `${this.resourceContextMenu.positionY}px`;
     }
 
+    public setSelectedItem(itemId : string | number | null = null) : void {
+        if (typeof itemId === 'string') {
+            const regex = /[^\d]+/gm,
+                result = itemId.replace(regex, '');
+
+            itemId = parseInt(result);
+        }
+
+        this.setIsGroup(itemId === null);
+        this.resourceContextMenu.selectedItemId = itemId;
+    }
+
+    public getSelectedItem() : number | null {
+        return this.resourceContextMenu.selectedItemId;
+    }
+
     public setIsGroup(isGroup : boolean) : void {
         this.resourceContextMenu.isGroup = isGroup;
     }
@@ -104,6 +121,9 @@ export class ResourceContextMenu {
     }
 
     private addItem() : void {
+        // TODO insert case
+        //console.log(Globals.getContextMenuData().getIsGroup());
+        
         const groupName = this.getMenuType();
         Globals.getResourceListInstance().addItem(groupName);
 

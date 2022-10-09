@@ -82,10 +82,12 @@ export class SidebarComponent implements OnInit {
       if (targetContainer !== null) {
         // main groups selection
         if (typeof targetContainer.dataset['id'] === 'undefined') {
+          this.contextMenu.setSelectedItem();
           this.sidebarListInstance.setSelectedItem(resourceName);
         }
         // all other group and item selection
         else {
+          this.contextMenu.setSelectedItem(targetContainer.dataset['id']);
           this.sidebarListInstance.setSelectedItem(targetContainer.dataset['id']);
         }
       }
@@ -107,15 +109,17 @@ export class SidebarComponent implements OnInit {
             if (isToggleButtonClicked) {
               this.sidebarListInstance.toggleGroup(resource);
             } else {
+              this.contextMenu.setSelectedItem();
               Globals.getResourceListInstance().setSelectedItem(resourceName);
             }
           }
-          // all other group and item click/selection
+          // all other group and item (double)click/selection
           else {
             if (isToggleButtonClicked) {
               // TODO
               console.log(`open subfolder or open item properties of ${resourceName} group id: ${targetContainer.dataset['id']}`);
             } else {
+              this.contextMenu.setSelectedItem(targetContainer.dataset['id']);
               Globals.getResourceListInstance().setSelectedItem(targetContainer.dataset['id']);
             }
           }

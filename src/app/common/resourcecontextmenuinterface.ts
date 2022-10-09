@@ -3,6 +3,7 @@ export interface ResourceContextMenuInterface {
     isShown : boolean;
     isGroup : boolean;
     contextMenuType : string;
+    selectedItemId : number | null;
     positionX : number;
     positionY : number;
 }

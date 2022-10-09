@@ -121,6 +121,17 @@
                                 min-height: 17px;
                                 font-family: 'Arial', sans-serif;
                                 font-weight: normal;
+
+                                // cursor hover
+                                & > span:hover {
+                                    animation: none;
+                                    color: #4676A2;
+                                    text-decoration: underline;
+                                }
+
+                                &.selected > span {
+                                    color: #FFF;
+                                }
                             }
 
                             span {
@@ -222,9 +233,10 @@
                                             background-image: url('/assets/images/line_dotted_end.png');
                                         }
                                         
-                                        // cursor hover blink
+                                        // cursor hover
                                         & > span:hover {
-                                            animation: anim-blink 0.05s linear;
+                                            color: #4676A2;
+                                            text-decoration: underline;
                                         }
 
                                         &.selected > span {
