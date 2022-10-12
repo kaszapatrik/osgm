@@ -121,11 +121,16 @@ export class ResourceContextMenu {
     }
 
     private addItem() : void {
-        // TODO insert case
-        //console.log(Globals.getContextMenuData().getIsGroup());
-        
         const groupName = this.getMenuType();
-        Globals.getResourceListInstance().addItem(groupName);
+
+        // group command to add item
+        if (this.getIsGroup()) {
+            Globals.getResourceListInstance().addItem(groupName);
+        }
+        // item command to insert item
+        else {
+            Globals.getResourceListInstance().insertItem(groupName, this.getSelectedItem());
+        }
 
         Globals.getResourceListInstance().openGroup(groupName);
     }

@@ -81,6 +81,10 @@ export class ResourceList {
     }
 
     public addItem(groupName : string, item : {[key : string] : any} = {}) : void {
+        this.insertItem(groupName, null, item);
+    }
+
+    public insertItem(groupName : string, otherItemId : number | null = null, item : {[key : string] : any} = {}) : void {
         const resourceGroup = this.getGroup(groupName);
 
         if (resourceGroup === null) {
@@ -99,7 +103,16 @@ export class ResourceList {
             item['image'] = this.getGroupIconImage(groupName);
         }
 
-        resourceGroup.list.push(item);
+        if (otherItemId !== null) {
+            const index = this.getItemIndex(groupName, otherItemId);
+            if (index > -1) {
+                resourceGroup.list.splice(index, 0, item);
+            } else {
+                resourceGroup.list.push(item);
+            }
+        } else {
+            resourceGroup.list.push(item);
+        }
     }
 
     public setSelectedItem(name : string | null) : void {
@@ -108,6 +121,22 @@ export class ResourceList {
 
     public getSelectedItem() : string | null {
         return this.selectedItem;
+    }
+
+    public getItemIndex(groupName : string, itemId : number | null) : number {
+        const resourceGroup = this.getGroup(groupName);
+
+        if (resourceGroup === null || itemId === null) {
+            return -1;
+        }
+
+        for (let i = 0, n = resourceGroup.list.length; i < n; i++) {
+            if (resourceGroup.list[i].id === itemId) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     public toggleGroup(groupName :  string | ResourceListInterface, value : null | boolean = null) : void {
