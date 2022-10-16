@@ -113,6 +113,14 @@ export class ResourceList {
         } else {
             resourceGroup.list.push(item);
         }
+
+        const newItemId = resourceGroup.list.length - 1,
+            newItemDataId = `${groupName}${newItemId}`;
+
+        // select the new item
+        this.setSelectedItem(newItemDataId);
+
+        Globals.openModal(groupName, newItemId);
     }
 
     public setSelectedItem(name : string | null) : void {

@@ -1,0 +1,26 @@
+<div class="modal-container"
+    *ngFor="let modal of openModalsList, let i = index"
+    [attr.data-id]="modal['uniqueItemId']"
+    [style.left]="getModalLeftPosition(i)"
+    [style.top]="getModalTopPosition(i)"
+>
+    <div class="drag modal-header"
+        draggable="true"
+        (dragstart)="modalDragToggle($event, i, true)"
+        (dragend)="modalDragToggle($event, i, false)"
+        (drag)="modalDrag($event, i)"
+    >
+        <div class="drag modal-title">
+            <div class="drag modal-icon">☺</div>
+            <span class="drag">title dummy</span>
+        </div>
+        <div class="modal-buttons" draggable="true">
+            <div class="btn btn-minimize">_</div>
+            <div class="btn btn-maximize">=</div>
+            <div class="btn btn-close">&times;</div>
+        </div>
+    </div>
+    <div class="modal-body">
+        jee
+    </div>
+</div>

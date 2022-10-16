@@ -1,10 +1,10 @@
-<div class="app-container"
+<div class="container app-container"
   (contextmenu)="onRightClick($event)"
   (click)="onLeftClick($event)"
 >
-  <app-navbar class="panel-navbar"></app-navbar>
-  <app-sidebar class="panel-sidebar"></app-sidebar>
-  <app-playground class="panel-playground"></app-playground>
+  <app-navbar class="container panel-navbar"></app-navbar>
+  <app-sidebar class="container panel-sidebar"></app-sidebar>
+  <app-playground class="container panel-playground"></app-playground>
 
   <div class="cm context-menu"
       *ngIf="contextMenu.isVisible()"

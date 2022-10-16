@@ -53,12 +53,13 @@ export class SidebarComponent implements OnInit {
     if (this.isBorderCatched) {
       // save drag X
       if (event.clientX !== 0) {
-        this.borderDragX = event.clientX;
+        this.borderDragX = event.clientX - 3;
       }
 
       // set sidebar width to drag X
       if (this.sidebarElementRef !== null) {
         this.sidebarElementRef.style.width = `${this.borderDragX}px`;
+        // TODO trigger window resize
       }
     }
   }

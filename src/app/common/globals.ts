@@ -16,6 +16,9 @@ export class Globals {
         objects: 0,
         rooms: 0,
     };
+    public static modalsComponent : any;
+    // TODO interface
+    public static openModalsList : Array<{[key : string] : any}> = [];
 
     public static getResourceListInstance() : ResourceList {
         if (typeof Globals.resourceList === 'undefined') {
@@ -45,5 +48,24 @@ export class Globals {
         }
 
         return -1;
+    }
+
+    public static getOpenModalsList() : Array<{[key : string] : any}> {
+        return Globals.openModalsList;
+    }
+
+    public static openModal(groupName : string, itemId : number) : void {
+        this.openModalsList.push({
+            groupName: groupName,
+            itemId: itemId,
+            modalElementRef: null,
+            parentElementRef: null,
+            positionX: 0,
+            positionY: 0,
+            uniqueItemId: `${groupName}${itemId}`,
+        });
+
+        const newModalIndex = this.openModalsList.length - 1;
+        this.modalsComponent.setPositionCenter(newModalIndex);
     }
 }
