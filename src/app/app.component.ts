@@ -23,8 +23,31 @@ export class AppComponent {
 
     const target = event.target as HTMLElement;
 
-    if (target !== null && !target.classList.contains('item')) {
-      Globals.getResourceListInstance().setSelectedItem(null);
+    if (target !== null) {
+      // context menu out-click
+      if (!target.classList.contains('item')) {
+        Globals.getResourceListInstance().setSelectedItem(null);
+      }
+
+      // modal click
+      if (target.classList.contains('modal')) {
+        const modalContainer = target.closest('.modal-container') as HTMLElement | null;
+
+        if (modalContainer !== null) {
+          const groupName = modalContainer.dataset['groupName'],
+            itemId = modalContainer.dataset['id'];
+          
+          if (typeof groupName !== 'undefined' && typeof itemId !== 'undefined') {
+            const modal = Globals.getModalIsOpen(groupName, Number(itemId));
+
+            if (modal !== null) {
+              // make it active and take it to front
+              modal['zIndex'] = Globals.getZIndex();
+              // TODO active
+            }
+          }
+        }
+      }
     }
   }
 

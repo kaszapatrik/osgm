@@ -38,28 +38,36 @@ export class ResourceList {
         return null;
     }
 
-    private getGroupIconImage(groupName : string) : string | null {
+    public getGroupIconImage(groupName : string, hasAlwaysReturnIcon = false) : string | null {
         const icons : {[key : string] : string | null} = {
-            sprites: null,
-            sounds: '/assets/images/icon_sound.png',
-            backgrounds: null,
-            models: '/assets/images/icon_model.png',
-            materials: '/assets/images/icon_material.png',
-            scripts: '/assets/images/icon_script.png',
-            fonts: '/assets/images/icon_font.png',
-            objects: null,
-            rooms: '/assets/images/icon_room.png',
+            sprites: './assets/images/icon_sprite.png',
+            sounds: './assets/images/icon_sound.png',
+            backgrounds: './assets/images/icon_background.png',
+            models: './assets/images/icon_model.png',
+            materials: './assets/images/icon_material.png',
+            scripts: './assets/images/icon_script.png',
+            fonts: './assets/images/icon_font.png',
+            objects: './assets/images/icon_object.png',
+            rooms: './assets/images/icon_room.png',
         };
 
         if (icons.hasOwnProperty(groupName)) {
-            return icons[groupName];
+            if (hasAlwaysReturnIcon) {
+                return icons[groupName];
+            }
+            else {
+                // that resources using unique pictures
+                const excluded = ['sprites', 'backgrounds', 'objects'];
+
+                return excluded.indexOf(groupName) === -1 ? icons[groupName] : null;
+            }
         }
         else {
             return null;
         }
     }
 
-    private getGroupItemName(groupName : string, id : number) : string {
+    public getGroupName(groupName : string, isCapitalized = false) : string {
         const names : {[key : string] : string} = {
             sprites: 'sprite',
             sounds: 'sound',
@@ -72,12 +80,18 @@ export class ResourceList {
             rooms: 'room',
         };
 
-        if (names.hasOwnProperty(groupName)) {
-            return `${names[groupName]}${id}`;
-        }
-        else {
-            return '';
-        }
+        return names.hasOwnProperty(groupName)
+            ? (isCapitalized
+                ? `${names[groupName].substring(0, 1).toLocaleUpperCase()}${names[groupName].substring(1)}`
+                : names[groupName]
+            )
+            : '';
+    }
+
+    private getGroupItemName(groupName : string, id : number) : string {
+        const name = this.getGroupName(groupName);
+
+        return name !== '' ? `${name}${id}` : '';
     }
 
     public addItem(groupName : string, item : {[key : string] : any} = {}) : void {
@@ -116,6 +130,8 @@ export class ResourceList {
 
         const newItemId = resourceGroup.list.length - 1,
             newItemDataId = `${groupName}${newItemId}`;
+
+        item['uniqueId'] = newItemDataId;
 
         // select the new item
         this.setSelectedItem(newItemDataId);

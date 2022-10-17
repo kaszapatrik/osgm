@@ -1,5 +1,7 @@
 import { ResourceList } from './resourcelist';
 import { ResourceContextMenu } from './resourcecontextmenu';
+import { OpenModalsInterface } from './openmodalsinterface';
+import { ModalComponent } from '../modal/modal.component';
 
 export class Globals {
     public static contextMenu : ResourceContextMenu;
@@ -18,7 +20,8 @@ export class Globals {
     };
     public static modalsComponent : any;
     // TODO interface
-    public static openModalsList : Array<{[key : string] : any}> = [];
+    public static openModalsList : Array<OpenModalsInterface> = [];
+    public static zIndex : number = 0;
 
     public static getResourceListInstance() : ResourceList {
         if (typeof Globals.resourceList === 'undefined') {
@@ -50,11 +53,30 @@ export class Globals {
         return -1;
     }
 
-    public static getOpenModalsList() : Array<{[key : string] : any}> {
+    public static getOpenModalsList() : Array<OpenModalsInterface> {
         return Globals.openModalsList;
     }
 
+    public static getModalIsOpen(groupName : string, itemId : number) : null | {[key : string] : any} {
+        for (let i = 0, n = this.openModalsList.length; i < n; i++) {
+            if (this.openModalsList[i]['groupName'] === groupName && this.openModalsList[i]['itemId'] === itemId) {
+                return this.openModalsList[i];
+            }
+        }
+
+        return null;
+    }
+
     public static openModal(groupName : string, itemId : number) : void {
+        const modal = this.getModalIsOpen(groupName, itemId);
+
+        if (modal !== null) {
+            // one resource is only accessible in one window, take it to front
+            // TODO set opened modal to active, front, etc
+            console.log(modal);
+            return;
+        }
+
         this.openModalsList.push({
             groupName: groupName,
             itemId: itemId,
@@ -63,9 +85,21 @@ export class Globals {
             positionX: 0,
             positionY: 0,
             uniqueItemId: `${groupName}${itemId}`,
+            zIndex: this.getZIndex(),
         });
 
         const newModalIndex = this.openModalsList.length - 1;
-        this.modalsComponent.setPositionCenter(newModalIndex);
+
+        requestAnimationFrame(() => {
+            this.modalsComponent.setPositionCenter(newModalIndex);
+        });
+    }
+
+    public static getZIndex() : number {
+        return this.zIndex++;
+    }
+
+    public static setZIndex(zIndex : number) : void {
+        this.zIndex = zIndex;
     }
 }

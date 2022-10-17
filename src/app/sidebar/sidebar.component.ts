@@ -82,14 +82,14 @@ export class SidebarComponent implements OnInit {
 
       if (targetContainer !== null) {
         // main groups selection
-        if (typeof targetContainer.dataset['id'] === 'undefined') {
+        if (typeof targetContainer.dataset['uniqueId'] === 'undefined') {
           this.contextMenu.setSelectedItem();
           this.sidebarListInstance.setSelectedItem(resourceName);
         }
         // all other group and item selection
         else {
-          this.contextMenu.setSelectedItem(targetContainer.dataset['id']);
-          this.sidebarListInstance.setSelectedItem(targetContainer.dataset['id']);
+          this.contextMenu.setSelectedItem(targetContainer.dataset['uniqueId']);
+          this.sidebarListInstance.setSelectedItem(targetContainer.dataset['uniqueId']);
         }
       }
     }
@@ -106,7 +106,7 @@ export class SidebarComponent implements OnInit {
 
         if (targetContainer !== null) {
           // main groups click/selection
-          if (typeof targetContainer.dataset['id'] === 'undefined') {
+          if (typeof targetContainer.dataset['uniqueId'] === 'undefined') {
             if (isToggleButtonClicked) {
               this.sidebarListInstance.toggleGroup(resource);
             } else {
@@ -117,11 +117,15 @@ export class SidebarComponent implements OnInit {
           // all other group and item (double)click/selection
           else {
             if (isToggleButtonClicked) {
-              // TODO
-              console.log(`open subfolder or open item properties of ${resourceName} group id: ${targetContainer.dataset['id']}`);
+              const itemId = typeof targetContainer.dataset['id'] !== 'undefined' ? Number(targetContainer.dataset['id']) : -1;
+              if (itemId !== -1) {
+                Globals.openModal(resourceName, itemId);
+              } else {
+                // TODO chech when it is a subgroup, and open it, instead of modal
+              }
             } else {
-              this.contextMenu.setSelectedItem(targetContainer.dataset['id']);
-              Globals.getResourceListInstance().setSelectedItem(targetContainer.dataset['id']);
+              this.contextMenu.setSelectedItem(targetContainer.dataset['uniqueId']);
+              Globals.getResourceListInstance().setSelectedItem(targetContainer.dataset['uniqueId']);
             }
           }
         }

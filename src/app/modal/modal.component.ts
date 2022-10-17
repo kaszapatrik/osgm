@@ -8,15 +8,13 @@ import { Globals } from '../common/globals';
 })
 
 export class ModalComponent implements OnInit {
+  public resourceListInstance = Globals.getResourceListInstance();
   public openModalsList = Globals.getOpenModalsList();
   public isHeaderCatched : boolean = false;
+  public modalPositionShift = 0;
   public dragX = 0;
   public dragY = 0;
   public ghostImage = new Image();
-  private modalElementRef : HTMLElement | null = null;
-  private parentElementRef : HTMLElement | null = null;
-  public positionX = 0;
-  public positionY = 0;
 
   constructor() {
     Globals.modalsComponent = this;
@@ -32,7 +30,7 @@ export class ModalComponent implements OnInit {
   public getModalElement(index : number) : HTMLElement | null {
     if (typeof this.openModalsList[index] !== 'undefined') {
       if (this.openModalsList[index]['modalElementRef'] === null) {
-        this.openModalsList[index]['modalElementRef'] = document.querySelector(`.modal-container[data-id="${this.openModalsList[index]['uniqueItemId']}"]`);
+        this.openModalsList[index]['modalElementRef'] = document.querySelector(`.modal-container[data-unique-id="${this.openModalsList[index]['uniqueItemId']}"]`);
       }
 
       return this.openModalsList[index]['modalElementRef'];
@@ -44,7 +42,8 @@ export class ModalComponent implements OnInit {
   public getParentElement(index : number) : HTMLElement | null {
     if (typeof this.openModalsList[index] !== 'undefined') {
       if (this.openModalsList[index]['parentElementRef'] === null) {
-        this.openModalsList[index]['parentElementRef'] = this.getModalElement(index)?.closest('.container');
+        const modal = this.getModalElement(index);
+        this.openModalsList[index]['parentElementRef'] = modal !== null ? modal.closest('.container') : null;
       }
 
       return this.openModalsList[index]['parentElementRef'];
@@ -70,6 +69,9 @@ export class ModalComponent implements OnInit {
     if (isCatched) {
       if (typeof this.openModalsList[index] !== 'undefined') {
         const modal = this.openModalsList[index];
+
+        // take it to the front
+        modal['zIndex'] = Globals.getZIndex();
 
         this.dragX = modal['positionX'] - event.clientX;
         this.dragY = modal['positionY'] - event.clientY;
@@ -112,10 +114,20 @@ export class ModalComponent implements OnInit {
   public setPositionCenter(index : number) : void {
     const modal = this.openModalsList[index],
       modalElement = this.getModalElement(index),
-      parentElement = this.getParentElement(index);
-    
-    modal['positionX'] = (parentElement?.offsetWidth ?? window.innerWidth) / 2 - (modalElement?.offsetWidth ?? 0) / 2;
-    modal['positionY'] = (parentElement?.offsetHeight ?? window.innerHeight) / 2 - (modalElement?.offsetHeight ?? 0) / 2;
+      parentElement = this.getParentElement(index),
+      parentElementWidth = parentElement?.offsetWidth ?? window.innerWidth,
+      parentElementHeight = parentElement?.offsetHeight ?? window.innerHeight,
+      shiftX = this.modalPositionShift * (parentElementWidth * 0.05),
+      shiftY = this.modalPositionShift * (parentElementHeight * 0.05);
+
+    modal['positionX'] = parentElementWidth / 2 - (modalElement?.offsetWidth ?? 0) / 2 + shiftX;
+    modal['positionY'] = parentElementHeight / 2 - (modalElement?.offsetHeight ?? 0) / 2 + shiftY;
+
+    this.modalPositionShift++;
+
+    if (this.modalPositionShift >= 5) {
+      this.modalPositionShift = -5;
+    }
   }
 
   public getModalLeftPosition(index : number) : string {
@@ -136,5 +148,16 @@ export class ModalComponent implements OnInit {
     }
 
     return `${top}px`;
+  }
+
+  public modalClose(index : number) : void {
+    if (typeof this.openModalsList[index] !== 'undefined') {
+      this.openModalsList.splice(index, 1);
+    }
+
+    if (this.openModalsList.length === 0) {
+      this.modalPositionShift = 0;
+      Globals.setZIndex(0);
+    }
   }
 }

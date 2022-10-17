@@ -15,7 +15,8 @@
             <ul class="inner-group" *ngIf="listElement.isOpen">
                 <li *ngFor="let item of listElement.list"
                     class="item"
-                    [attr.data-id]="listElement.name + item.id"
+                    [attr.data-id]="item.id"
+                    [attr.data-unique-id]="listElement.name + item.id"
                     [class.selected]="listElement.name + item.id === sidebarListInstance.getSelectedItem()"
                 >
                     <div class="item icon-block" [style.background-image]="item.image !== null ? 'url(' + item.image + ')' : 'none'"></div>
