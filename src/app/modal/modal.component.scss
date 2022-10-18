@@ -65,7 +65,7 @@
                     height: 14px;
                     border: 1px solid rgba(0, 0, 0, 0.5);
                     border-radius: 2px;
-                    background-color: #c0d3e5;
+                    background-color: #C0D3E5;
                     background: linear-gradient(to bottom, rgb(211, 219, 230) 0%, rgb(209, 217, 226) 50%, rgb(180, 186, 194) 51%, rgb(214, 220, 226) 100%);
                     color: #FFF;
                     text-shadow: 1px 0 0 #000,
@@ -84,13 +84,18 @@
                         background-color: #8CACCD;
                         background: linear-gradient(to bottom, rgb(176, 196, 204) 0%, rgb(134, 183, 201) 50%, rgb(108, 191, 216) 51%, rgb(153, 192, 207) 100%);
                     }
+
+                    &.disabled {
+                        background-color: #BBB;
+                        background: linear-gradient(to bottom, rgb(198, 198, 198) 0%, rgb(168, 168, 168) 50%, rgb(147, 147, 147) 51%, rgb(132, 132, 132) 100%);
+                    }
                 }
 
                 .btn-close {
                     background-color: #e2adad;
                     background: linear-gradient(to bottom, rgb(235, 195, 184) 0%, rgb(255, 210, 195) 50%, rgb(182, 128, 107) 51%, rgb(211, 171, 155) 100%);
 
-                    &:active {
+                    &:not(.disabled):active {
                         background-color: #c76060;
                         background: linear-gradient(to bottom, rgb(189, 149, 149) 0%, rgb(189, 87, 87) 49%, rgb(126, 52, 52) 52%, rgb(197, 68, 68) 68%, rgb(179, 138, 64) 95%, rgb(255, 191, 156) 100%);
                     }
@@ -122,7 +127,7 @@
                 -3px -3px 0 rgb(136, 220, 255) inset;
             
             .modal-header .modal-buttons {
-                .btn {
+                .btn:not(.disabled) {
                     background-color: #8DBAE7;
                     background: linear-gradient(to bottom, rgb(192, 211, 235) 0%, rgb(188, 207, 229) 50%, rgb(153, 174, 199) 51%, rgb(178, 201, 228) 100%);
 
@@ -137,7 +142,7 @@
                     }
                 }
 
-                .btn-close {
+                .btn-close:not(.disabled) {
                     background-color: #E78D8D;
                     background: linear-gradient(to bottom, rgb(242, 173, 154) 0%, rgb(252, 161, 130) 50%, rgb(185, 88, 50) 51%, rgb(217, 142, 113) 100%);
 

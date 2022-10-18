@@ -187,7 +187,15 @@ export class ResourceList {
         this.toggleGroup(groupName, true);
     }
 
-    public getResource() : ResourceInterface {
-        // TODO !!!
+    public getResource(groupName : string, itemId : number) : ResourceInterface | null {
+        const resourceGroup = this.getGroup(groupName);
+        if (resourceGroup !== null) {
+            const index = this.getItemIndex(groupName, itemId);
+            if (index > -1) {
+                return resourceGroup.list[index];
+            }
+        }
+
+        return null;
     }
 }

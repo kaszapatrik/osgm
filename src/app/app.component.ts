@@ -39,7 +39,6 @@ export class AppComponent {
           
           if (typeof groupName !== 'undefined' && typeof itemId !== 'undefined') {
             const modal = Globals.getModalIsOpen(groupName, Number(itemId));
-            console.log(modal);
 
             if (modal !== null) {
               // take it to the front

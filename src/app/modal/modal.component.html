@@ -20,12 +20,12 @@
             ></div>
             <span class="modal drag modal-title-text">
                 {{resourceListInstance.getGroupName(modal['groupName'], true)}} Properties:
-                {{'TODO item_name'}}
+                {{modal['resource'] !== null ? modal['resource']['title'] : '?'}}
             </span>
         </div>
         <div class="modal modal-buttons" draggable="true">
-            <div class="modal btn btn-minimize">&ndash;</div>
-            <div class="modal btn btn-maximize">&#9723;</div>
+            <div class="modal btn btn-minimize disabled">&ndash;</div>
+            <div class="modal btn btn-maximize disabled">&#9723;</div>
             <div class="modal btn btn-close"
                 (click)="modalClose(i)"
             >&times;</div>
