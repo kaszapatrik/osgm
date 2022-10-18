@@ -71,11 +71,15 @@ export class Globals {
         const modal = this.getModalIsOpen(groupName, itemId);
 
         if (modal !== null) {
-            // one resource is only accessible in one window, take it to front
-            // TODO set opened modal to active, front, etc
-            console.log(modal);
+            // take it to the front
+            modal['zIndex'] = Globals.getZIndex();
+            // make it focused
+            Globals.getModalComponent().setSelectedModal(modal['uniqueItemId']);
+
             return;
         }
+
+        const newUniqueItemId = `${groupName}${itemId}`;
 
         this.openModalsList.push({
             groupName: groupName,
@@ -84,14 +88,17 @@ export class Globals {
             parentElementRef: null,
             positionX: 0,
             positionY: 0,
-            uniqueItemId: `${groupName}${itemId}`,
+            uniqueItemId: newUniqueItemId,
             zIndex: this.getZIndex(),
         });
 
         const newModalIndex = this.openModalsList.length - 1;
 
         requestAnimationFrame(() => {
-            this.modalsComponent.setPositionCenter(newModalIndex);
+            this.getModalComponent().setPositionCenter(newModalIndex);
+
+            // make it focused
+            Globals.getModalComponent().setSelectedModal(newUniqueItemId);
         });
     }
 
@@ -101,5 +108,9 @@ export class Globals {
 
     public static setZIndex(zIndex : number) : void {
         this.zIndex = zIndex;
+    }
+
+    public static getModalComponent() : ModalComponent {
+        return this.modalsComponent;
     }
 }

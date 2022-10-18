@@ -15,6 +15,7 @@ export class ModalComponent implements OnInit {
   public dragX = 0;
   public dragY = 0;
   public ghostImage = new Image();
+  private selectedModalId = '';
 
   constructor() {
     Globals.modalsComponent = this;
@@ -72,6 +73,8 @@ export class ModalComponent implements OnInit {
 
         // take it to the front
         modal['zIndex'] = Globals.getZIndex();
+        // make it focused
+        Globals.getModalComponent().setSelectedModal(modal['uniqueItemId']);
 
         this.dragX = modal['positionX'] - event.clientX;
         this.dragY = modal['positionY'] - event.clientY;
@@ -159,5 +162,18 @@ export class ModalComponent implements OnInit {
       this.modalPositionShift = 0;
       Globals.setZIndex(0);
     }
+  }
+
+  public setSelectedModal(uniqueItemId ?: string) : void {
+    if (typeof uniqueItemId !== 'string') {
+      this.selectedModalId = '';
+    }
+    else {
+      this.selectedModalId = uniqueItemId;
+    }
+  }
+
+  public getSelectedModal() : string {
+    return this.selectedModalId;
   }
 }

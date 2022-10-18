@@ -1,5 +1,6 @@
 <div class="modal modal-container"
     *ngFor="let modal of openModalsList, let i = index"
+    [class.focus]="modal['uniqueItemId'] === getSelectedModal()"
     [attr.data-id]="modal['itemId']"
     [attr.data-group-name]="modal['groupName']"
     [attr.data-unique-id]="modal['uniqueItemId']"

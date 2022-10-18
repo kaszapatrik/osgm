@@ -120,7 +120,8 @@ export class SidebarComponent implements OnInit {
               const itemId = typeof targetContainer.dataset['id'] !== 'undefined' ? Number(targetContainer.dataset['id']) : -1;
               if (itemId !== -1) {
                 Globals.openModal(resourceName, itemId);
-              } else {
+              }
+              else {
                 // TODO chech when it is a subgroup, and open it, instead of modal
               }
             } else {

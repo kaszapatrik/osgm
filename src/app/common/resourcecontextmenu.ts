@@ -1,3 +1,4 @@
+import { group } from '@angular/animations';
 import { Globals } from './globals';
 import { ResourceContextMenuInterface } from './resourcecontextmenuinterface';
 
@@ -113,7 +114,7 @@ export class ResourceContextMenu {
             case 'rename': { break; }
             case 'sort': { this.sortGroup(); break; }
             case 'duplicate': { break; }
-            case 'properties': { break; }
+            case 'properties': { this.properties(); break; }
             case 'exportScripts': { break; }
         }
 
@@ -133,6 +134,17 @@ export class ResourceContextMenu {
         }
 
         Globals.getResourceListInstance().openGroup(groupName);
+    }
+
+    private properties() : void {
+        const itemId = this.getSelectedItem();
+        if (itemId !== null) {
+            const groupName = this.getMenuType();
+
+            requestAnimationFrame(() => {
+                Globals.openModal(groupName, itemId);
+            });
+        }
     }
 
     private sortGroup() : void {

@@ -12,12 +12,12 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        background-color: #8DBAE7;
-        background: linear-gradient(to bottom, rgb(150, 180, 213) 0%, rgb(188, 206, 232) 15%, rgb(208, 226, 248) 49%, rgb(180, 208, 234) 51%, rgb(185, 206, 240) 100%);
+        background-color: #bdcfe0;
+        background: linear-gradient(to bottom, rgb(188, 198, 209) 0%, rgb(216, 220, 224) 15%, rgb(233, 239, 247) 49%, rgb(221, 228, 235) 51%, rgb(224, 228, 235) 100%);
         box-shadow: 1px 1px 0 #FFF inset,
-            -1px -1px 0 rgb(66, 111, 137) inset,
-            -2px -2px 0 rgb(103, 185, 219) inset,
-            -3px -3px 0 rgb(136, 220, 255) inset;
+            -1px -1px 0 rgb(125, 132, 136) inset,
+            -2px -2px 0 rgb(194, 207, 212) inset,
+            -3px -3px 0 rgb(233, 248, 255) inset;
         color: #000;
         border: 1px solid #000;
         border-radius: 6px 6px 0 0;
@@ -65,8 +65,8 @@
                     height: 14px;
                     border: 1px solid rgba(0, 0, 0, 0.5);
                     border-radius: 2px;
-                    background-color: #8DBAE7;
-                    background: linear-gradient(to bottom, rgb(192, 211, 235) 0%,rgb(188, 207, 229) 50%,rgb(153, 174, 199) 51%,rgb(178, 201, 228) 100%);
+                    background-color: #c0d3e5;
+                    background: linear-gradient(to bottom, rgb(211, 219, 230) 0%, rgb(209, 217, 226) 50%, rgb(180, 186, 194) 51%, rgb(214, 220, 226) 100%);
                     color: #FFF;
                     text-shadow: 1px 0 0 #000,
                                     0 1px 0 #000,
@@ -80,29 +80,19 @@
                     user-select: none;
                     cursor: default;
 
-                    &:hover {
-                        background-color: #A5CAEE;
-                        background: linear-gradient(to bottom, rgb(183, 222, 237) 0%,rgb(113, 206, 239) 50%,rgb(33, 180, 226) 51%,rgb(183, 222, 237) 100%);
-                    }
-
                     &:active {
                         background-color: #8CACCD;
-                        background: linear-gradient(to bottom, rgb(153, 192, 207) 0%,rgb(83, 176, 209) 50%,rgb(33, 180, 226) 51%,rgb(153, 192, 207) 100%);
+                        background: linear-gradient(to bottom, rgb(176, 196, 204) 0%, rgb(134, 183, 201) 50%, rgb(108, 191, 216) 51%, rgb(153, 192, 207) 100%);
                     }
                 }
 
                 .btn-close {
-                    background-color: #E78D8D;
-                    background: linear-gradient(to bottom, rgb(242, 173, 154) 0%,rgb(252, 161, 130) 50%,rgb(185, 88, 50) 51%,rgb(217, 142, 113) 100%);
-
-                    &:hover {
-                        background-color: #FA5252;
-                        background: linear-gradient(to bottom, rgb(255, 124, 124) 0%,rgb(204, 32, 32) 49%,rgb(132, 3, 3) 52%,rgb(206, 6, 6) 68%,rgb(247, 127, 7) 95%,rgb(251, 149, 94) 100%);
-                    }
+                    background-color: #e2adad;
+                    background: linear-gradient(to bottom, rgb(235, 195, 184) 0%, rgb(255, 210, 195) 50%, rgb(182, 128, 107) 51%, rgb(211, 171, 155) 100%);
 
                     &:active {
-                        background-color: #CA4242;
-                        background: linear-gradient(to bottom, rgb(192, 124, 124) 0%,rgb(204, 32, 32) 49%,rgb(132, 3, 3) 52%,rgb(206, 6, 6) 68%,rgb(193, 127, 7) 95%,rgb(251, 149, 94) 100%);
+                        background-color: #c76060;
+                        background: linear-gradient(to bottom, rgb(189, 149, 149) 0%, rgb(189, 87, 87) 49%, rgb(126, 52, 52) 52%, rgb(197, 68, 68) 68%, rgb(179, 138, 64) 95%, rgb(255, 191, 156) 100%);
                     }
                 }
             }
@@ -121,6 +111,47 @@
             overflow: auto;
             max-width: 100%;
             max-height: 100%;
+        }
+
+        &.focus {
+            background-color: #8DBAE7;
+            background: linear-gradient(to bottom, rgb(150, 180, 213) 0%, rgb(188, 206, 232) 15%, rgb(208, 226, 248) 49%, rgb(180, 208, 234) 51%, rgb(185, 206, 240) 100%);
+            box-shadow: 1px 1px 0 #FFF inset,
+                -1px -1px 0 rgb(66, 111, 137) inset,
+                -2px -2px 0 rgb(103, 185, 219) inset,
+                -3px -3px 0 rgb(136, 220, 255) inset;
+            
+            .modal-header .modal-buttons {
+                .btn {
+                    background-color: #8DBAE7;
+                    background: linear-gradient(to bottom, rgb(192, 211, 235) 0%, rgb(188, 207, 229) 50%, rgb(153, 174, 199) 51%, rgb(178, 201, 228) 100%);
+
+                    &:hover {
+                        background-color: #A5CAEE;
+                        background: linear-gradient(to bottom, rgb(183, 222, 237) 0%, rgb(113, 206, 239) 50%, rgb(33, 180, 226) 51%, rgb(183, 222, 237) 100%);
+                    }
+
+                    &:active {
+                        background-color: #8CACCD;
+                        background: linear-gradient(to bottom, rgb(153, 192, 207) 0%,rgb(83, 176, 209) 50%,rgb(33, 180, 226) 51%,rgb(153, 192, 207) 100%);
+                    }
+                }
+
+                .btn-close {
+                    background-color: #E78D8D;
+                    background: linear-gradient(to bottom, rgb(242, 173, 154) 0%, rgb(252, 161, 130) 50%, rgb(185, 88, 50) 51%, rgb(217, 142, 113) 100%);
+
+                    &:hover {
+                        background-color: #FA5252;
+                        background: linear-gradient(to bottom, rgb(255, 124, 124) 0%, rgb(204, 32, 32) 49%, rgb(132, 3, 3) 52%, rgb(206, 6, 6) 68%, rgb(247, 127, 7) 95%, rgb(251, 149, 94) 100%);
+                    }
+
+                    &:active {
+                        background-color: #CA4242;
+                        background: linear-gradient(to bottom, rgb(192, 124, 124) 0%, rgb(204, 32, 32) 49%, rgb(132, 3, 3) 52%, rgb(206, 6, 6) 68%, rgb(193, 127, 7) 95%, rgb(251, 149, 94) 100%);
+                    }
+                }
+            }
         }
     }
 }

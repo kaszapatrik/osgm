@@ -41,12 +41,17 @@ export class AppComponent {
             const modal = Globals.getModalIsOpen(groupName, Number(itemId));
 
             if (modal !== null) {
-              // make it active and take it to front
+              // take it to the front
               modal['zIndex'] = Globals.getZIndex();
-              // TODO active
+              // make it focused
+              Globals.getModalComponent().setSelectedModal(modal['uniqueItemId']);
             }
           }
         }
+      }
+      else {
+        // make modals unfocused
+        Globals.getModalComponent().setSelectedModal();
       }
     }
   }
