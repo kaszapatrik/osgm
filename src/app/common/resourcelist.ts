@@ -1,4 +1,5 @@
 import { ResourceListInterface } from './resourcelistinterface';
+import { ResourceInterface } from './resourceinterface';
 import { Globals } from './globals';
 
 export class ResourceList {
@@ -184,5 +185,9 @@ export class ResourceList {
 
     public openGroup(groupName : string | ResourceListInterface) : void {
         this.toggleGroup(groupName, true);
+    }
+
+    public getResource() : ResourceInterface {
+        // TODO !!!
     }
 }

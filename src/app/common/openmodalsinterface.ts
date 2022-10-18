@@ -1,3 +1,5 @@
+import { ResourceInterface } from './resourceinterface';
+
 export interface OpenModalsInterface {
     groupName : string;
     itemId : number;
@@ -7,4 +9,5 @@ export interface OpenModalsInterface {
     positionY : number;
     uniqueItemId : string;
     zIndex : number;
+    resource : ResourceInterface | null;
 }

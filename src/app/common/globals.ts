@@ -79,7 +79,8 @@ export class Globals {
             return;
         }
 
-        const newUniqueItemId = `${groupName}${itemId}`;
+        const newUniqueItemId = `${groupName}${itemId}`,
+            resourceRef = this.getResourceListInstance().getResource(groupName, itemId);
 
         this.openModalsList.push({
             groupName: groupName,
@@ -90,6 +91,7 @@ export class Globals {
             positionY: 0,
             uniqueItemId: newUniqueItemId,
             zIndex: this.getZIndex(),
+            resource: resourceRef,
         });
 
         const newModalIndex = this.openModalsList.length - 1;
