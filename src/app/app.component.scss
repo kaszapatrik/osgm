@@ -95,3 +95,25 @@
         &.item-properties:before { background-image: url('../assets/images/icon_properties.png'); }
     }
 }
+
+::ng-deep {
+    input {
+        outline: none;
+
+        &[type="text"] {
+            padding: 2px;
+            font-size: 12px;
+            width: 128px;
+        }
+    }
+
+    .mr-8 {
+        margin-right: 8px;
+    }
+    
+    .col-224 {
+        display: block;
+        width: 224px;
+        height: auto;
+    }
+}

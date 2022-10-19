@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Globals } from '../common/globals';
+import { ResourceInterface } from '../common/resourceinterface';
 
 @Component({
   selector: 'app-modal',
@@ -175,5 +176,21 @@ export class ModalComponent implements OnInit {
 
   public getSelectedModal() : string {
     return this.selectedModalId;
+  }
+
+  // TODO resource interface
+  public resourceSetProperty(resource : any, property : string, event : Event) : void {
+    let value : string = '';
+
+    if (event !== null) {
+      const target = event.target as HTMLInputElement;
+      if (typeof target.value === 'string') {
+        value = target.value;
+      }
+    }
+
+    if (typeof resource[property] !== 'undefined') {
+      resource[property] = value;
+    }
   }
 }

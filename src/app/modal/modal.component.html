@@ -24,14 +24,25 @@
             </span>
         </div>
         <div class="modal modal-buttons" draggable="true">
-            <div class="modal btn btn-minimize disabled">&ndash;</div>
-            <div class="modal btn btn-maximize disabled">&#9723;</div>
+            <div class="modal btn btn-minimize disabled"
+            >&ndash;</div>
+            <div class="modal btn btn-maximize disabled"
+            >&#9723;</div>
             <div class="modal btn btn-close"
                 (click)="modalClose(i)"
             >&times;</div>
         </div>
     </div>
     <div class="modal modal-body">
-        jee
+        <div class="modal col-224">
+            <label class="modal">
+                <span class="modal mr-8">Name:</span>
+                <input type="text" class="modal"
+                    [value]="modal['resource'] !== null ? modal['resource']['title'] : ''"
+                    (change)="resourceSetProperty(modal['resource'], 'title', $event)"
+                    (keyup)="resourceSetProperty(modal['resource'], 'title', $event)"
+                />
+            </label>
+        </div>
     </div>
 </div>
