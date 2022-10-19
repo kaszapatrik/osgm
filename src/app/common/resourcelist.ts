@@ -30,9 +30,20 @@ export class ResourceList {
     }
 
     public getGroup(groupName : string) : ResourceListInterface | null {
-        for (let i = 0, n = this.resourceList.length; i < n; i++) {
-            if (this.resourceList[i].name === groupName) {
-                return this.resourceList[i];
+        if (typeof this.resourceListGroupsIndex[groupName] === 'undefined') {
+            for (let i = 0, n = this.resourceList.length; i < n; i++) {
+                if (this.resourceList[i].name === groupName) {
+                    this.resourceListGroupsIndex[groupName] = i;
+
+                    return this.resourceList[i];
+                }
+            }
+        } else {
+            const listItem = this.resourceList[this.resourceListGroupsIndex[groupName]];
+            if (typeof listItem !== 'undefined') {
+                return listItem;
+            } else {
+                return null;
             }
         }
 
