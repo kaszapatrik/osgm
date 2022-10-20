@@ -95,7 +95,8 @@ export class ModalComponent implements OnInit {
         modal['positionX'] = Math.max(0, Math.min(widthLimit, event.clientX + this.dragX));
       }
       if (event.clientY !== 0) {
-        const heightLimit = (parentElement?.offsetHeight ?? window.innerHeight) - (modalElement?.offsetHeight ?? 0) - 1;
+        const modalHeaderHeight = 29,
+          heightLimit = (parentElement?.offsetHeight ?? window.innerHeight) - modalHeaderHeight - 1;
         modal['positionY'] = Math.max(28, Math.min(heightLimit, event.clientY + this.dragY));
       }
     }
@@ -110,7 +111,8 @@ export class ModalComponent implements OnInit {
         const widthLimit = (parentElement?.offsetWidth ?? window.innerWidth) - (modalElement?.offsetWidth ?? 0) - 1;
         modal['positionX'] = Math.max(0, Math.min(widthLimit, modal['positionX']));
         
-        const heightLimit = (parentElement?.offsetHeight ?? window.innerHeight) - (modalElement?.offsetHeight ?? 0) - 1;
+        const modalHeaderHeight = 29,
+          heightLimit = (parentElement?.offsetHeight ?? window.innerHeight) - modalHeaderHeight - 1;
         modal['positionY'] = Math.max(28, Math.min(heightLimit, modal['positionY']));
     }
   }
@@ -154,7 +156,15 @@ export class ModalComponent implements OnInit {
     return `${top}px`;
   }
 
-  public modalClose(index : number) : void {
+  public modalClose(index : number, event ?: Event) : void {
+    if (typeof event !== 'undefined') {
+      const target = event.target as HTMLElement;
+
+      if (target.classList.contains('disabled')) {
+        return;
+      }
+    }
+
     if (typeof this.openModalsList[index] !== 'undefined') {
       this.openModalsList.splice(index, 1);
     }
@@ -162,6 +172,36 @@ export class ModalComponent implements OnInit {
     if (this.openModalsList.length === 0) {
       this.modalPositionShift = 0;
       Globals.setZIndex(0);
+    }
+  }
+
+  public modalMinimize(index : number, event ?: Event) : void {
+    if (typeof event !== 'undefined') {
+      const target = event.target as HTMLElement;
+      
+      if (target.classList.contains('disabled')) {
+        return;
+      }
+    }
+
+    if (typeof this.openModalsList[index] !== 'undefined') {
+      this.openModalsList[index]['isMinimized'] = !this.openModalsList[index]['isMinimized'];
+
+      console.log(this.openModalsList[index]);
+    }
+  }
+
+  public modalMaximize(index : number, event ?: Event) : void {
+    if (typeof event !== 'undefined') {
+      const target = event.target as HTMLElement;
+      
+      if (target.classList.contains('disabled')) {
+        return;
+      }
+    }
+
+    if (typeof this.openModalsList[index] !== 'undefined') {
+      this.openModalsList[index]['isMaximized'] = !this.openModalsList[index]['isMaximized'];
     }
   }
 

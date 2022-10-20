@@ -97,6 +97,16 @@
 }
 
 ::ng-deep {
+    // hide number input arrows
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     input {
         outline: none;
 
@@ -107,13 +117,99 @@
         }
     }
 
-    .mr-8 {
-        margin-right: 8px;
+    fieldset {
+        padding: 6px;
+        border: 2px groove #FFF;
+
+        legend {
+            padding: 0 4px;
+        }
     }
     
-    .col-224 {
+    .col-192 {
         display: block;
-        width: 224px;
+        width: 192px;
         height: auto;
+        text-align: center;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    button.btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: auto;
+        min-width: 160px;
+        text-align: left;
+        padding: 4px;
+        font-size: 12px;
+        border: 1px solid #A4A4A4;
+        border-radius: 3px;
+        background-color: #C8C8C8;
+        background: linear-gradient(to bottom, rgb(235, 235, 235) 0%, rgb(240, 240, 240) 49%, rgb(220, 220, 220) 51%, rgb(210, 210, 210) 100%);
+        box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5) inset, -1px -1px 1px rgba(255, 255, 255, 0.5) inset;
+
+        &:hover {
+            background: linear-gradient(to bottom, rgb(234, 241, 250) 0%, rgb(210, 236, 255) 49%, rgb(180, 222, 251) 51%, rgb(170, 212, 237) 100%);
+        }
+
+        &:active {
+            background: linear-gradient(to bottom, rgb(213, 233, 246) 0%, rgb(191, 227, 253) 49%, rgb(141, 195, 231) 51%, rgb(104, 151, 193) 100%);
+            box-shadow: none;
+            outline: 2px dotted rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+        }
+    }
+
+    .mt-4 { margin-top: 4px; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-64 { margin-top: 64px; }
+    .mb-8 { margin-bottom: 8px; }
+    .mr-8 { margin-right: 8px; }
+
+    .p-4 { padding: 4px; }
+
+    .col-fieldset { width: calc(100% - 64px); }
+    .small-number-input { width: 32px !important; }
+
+    button.btn-small {
+        display: inline-block;
+        padding: 1px;
+        width: auto;
+        min-width: 96px;
+        text-align: center;
+    }
+
+    button.btn-primary {
+        text-align: center;
+        justify-content: center;
+        border-color: rgb(73, 147, 196);
+        box-shadow: 1px 1px 0px rgba(120, 189, 228, 0.8) inset, -1px -1px 0px rgba(120, 189, 228, 0.8) inset;
+        width: auto;
+        min-width: 112px;
+
+        img {
+            width: auto;
+        }
     }
 }

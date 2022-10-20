@@ -89,6 +89,8 @@ export class Globals {
             parentElementRef: null,
             positionX: 0,
             positionY: 0,
+            isMinimized: false,
+            isMaximized: false,
             uniqueItemId: newUniqueItemId,
             zIndex: this.getZIndex(),
             resource: resourceRef,

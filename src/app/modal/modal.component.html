@@ -1,6 +1,8 @@
 <div class="modal modal-container"
     *ngFor="let modal of openModalsList, let i = index"
     [class.focus]="modal['uniqueItemId'] === getSelectedModal()"
+    [class.minimized]="modal['isMinimized']"
+    [class.maximized]="modal['isMaximized']"
     [attr.data-id]="modal['itemId']"
     [attr.data-group-name]="modal['groupName']"
     [attr.data-unique-id]="modal['uniqueItemId']"
@@ -24,25 +26,73 @@
             </span>
         </div>
         <div class="modal modal-buttons" draggable="true">
-            <div class="modal btn btn-minimize disabled"
-            >&ndash;</div>
-            <div class="modal btn btn-maximize disabled"
-            >&#9723;</div>
+            <div class="modal btn btn-minimize"
+                (click)="modalMinimize(i, $event)"
+            >{{modal['isMinimized'] ? '&#9651;' : '&ndash;'}}</div>
+            <div class="modal btn btn-maximize"
+                (click)="modalMaximize(i, $event)"
+            >{{modal['isMaximized'] ? '&#9713;' : '&#9723;'}}</div>
             <div class="modal btn btn-close"
-                (click)="modalClose(i)"
+                (click)="modalClose(i, $event)"
             >&times;</div>
         </div>
     </div>
     <div class="modal modal-body">
-        <div class="modal col-224">
-            <label class="modal">
-                <span class="modal mr-8">Name:</span>
-                <input type="text" class="modal"
-                    [value]="modal['resource'] !== null ? modal['resource']['title'] : ''"
-                    (change)="resourceSetProperty(modal['resource'], 'title', $event)"
-                    (keyup)="resourceSetProperty(modal['resource'], 'title', $event)"
-                />
-            </label>
+        <!-- sprites properties -->
+        <div *ngIf="modal['groupName'] === 'sprites'" class="modal">
+            <div class="modal col-192">
+                <label class="modal">
+                    <span class="modal mr-8">Name:</span>
+                    <input type="text" class="modal"
+                        [value]="modal['resource'] !== null ? modal['resource']['title'] : ''"
+                        (change)="resourceSetProperty(modal['resource'], 'title', $event)"
+                        (keyup)="resourceSetProperty(modal['resource'], 'title', $event)"
+                    />
+                </label>
+
+                <div class="modal flex-column mt-8">
+                    <button type="button" class="modal btn">
+                        <img src="./assets/images/icon_open.png" alt="" class="modal" />
+                        Load Sprite
+                    </button>
+
+                    <button type="button" class="modal btn mt-8">
+                        <img src="./assets/images/icon_save.png" alt="" class="modal" />
+                        Save Sprite
+                    </button>
+
+                    <button type="button" class="modal btn mt-8">
+                        <img src="./assets/images/icon_background.png" alt="" class="modal" />
+                        Edit Sprite
+                    </button>
+                </div>
+
+                <div class="modal flex-column mt-16">
+                    <div class="modal flex-row">
+                        <span class="modal">Width: <span>?</span></span>
+                        <span class="modal">Height: <span>?</span></span>
+                    </div>
+                    <span class="modal mt-4">Number of subimages: <span>?</span></span>
+                </div>
+
+                <div class="modal flex-column mt-64">
+                    <fieldset class="modal col-fieldset">
+                        <legend class="modal">Origin:</legend>
+                        <div class="modal flex-row">
+                            <span class="modal">X <input type="number" class="modal small-number-input" value="0" /></span>
+                            <span class="modal">Y <input type="number" class="modal small-number-input" value="0" /></span>
+                        </div>
+                        <button type="button" class="modal btn btn-small mt-8">Center</button>
+                    </fieldset>
+                </div>
+
+                <button type="button" class="modal btn btn-primary mt-8">
+                    <img src="./assets/images/icon_okay.png" alt="" class="modal" />
+                    OK
+                </button>
+            </div>
         </div>
+
+        <!-- TODO other resources properties -->
     </div>
 </div>

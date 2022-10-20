@@ -160,5 +160,44 @@
                 }
             }
         }
+
+        &.maximized:not(.minimized) {
+            box-sizing: border-box;
+            left: 0 !important;
+            top: 28px !important;
+            width: 100%;
+            height: calc(100% - 28px);
+            border-radius: 0;
+            border: 0;
+            padding: 0;
+
+            .modal-header {
+                box-sizing: border-box;
+                padding: 0 6px 0 4px;
+            }
+            
+            &.focus {
+                box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3) inset,
+                    -1px -1px 0 rgb(66, 111, 137) inset,
+                    -2px -2px 0 rgb(103, 185, 219) inset,
+                    -3px -3px 0 rgb(136, 220, 255) inset;
+            }
+        }
+
+        &.minimized {
+            min-height: auto;
+            padding-bottom: 0;
+            top: auto !important;
+            bottom: 0 !important;
+
+            .modal-body {
+                display: none;
+                visibility: hidden;
+                width: 0;
+                height: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+        }
     }
 }

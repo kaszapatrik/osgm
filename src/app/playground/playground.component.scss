@@ -10,6 +10,7 @@
         margin-left: 5px;
         background-color: #E6E6E6;
         box-shadow: -1px 0 2px #000;
-        overflow: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
 }
