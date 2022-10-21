@@ -40,76 +40,83 @@
     <div class="modal modal-body">
         <!-- sprites properties -->
         <div *ngIf="modal['groupName'] === 'sprites'" class="modal flex-row">
-            <div class="modal col-192 separator-r">
-                <label class="modal">
-                    <span class="modal mr-8">Name:</span>
-                    <input type="text" class="modal"
-                        [value]="modal['resource'] !== null ? modal['resource']['title'] : ''"
-                        (change)="resourceSetProperty(modal['resource'], 'title', $event)"
-                        (keyup)="resourceSetProperty(modal['resource'], 'title', $event)"
-                    />
-                </label>
+            <div class="modal col-outer flex-row">
+                <div class="modal col-192 separator-r">
+                    <label class="modal">
+                        <span class="modal mr-8">Name:</span>
+                        <input type="text" class="modal"
+                            [value]="modal['resource'] !== null ? modal['resource']['title'] : ''"
+                            (change)="resourceSetProperty(modal['resource'], 'title', $event)"
+                            (keyup)="resourceSetProperty(modal['resource'], 'title', $event)"
+                        />
+                    </label>
 
-                <div class="modal flex-column mt-8">
-                    <button type="button" class="modal btn">
-                        <img src="./assets/images/icon_open.png" alt="" class="modal" />
-                        Load Sprite
-                    </button>
-
-                    <button type="button" class="modal btn mt-8">
-                        <img src="./assets/images/icon_save.png" alt="" class="modal" />
-                        Save Sprite
-                    </button>
-
-                    <button type="button" class="modal btn mt-8">
-                        <img src="./assets/images/icon_background.png" alt="" class="modal" />
-                        Edit Sprite
-                    </button>
-                </div>
-
-                <div class="modal flex-column mt-16">
-                    <div class="modal flex-row-evenly">
-                        <span class="modal">Width: <span>?</span></span>
-                        <span class="modal">Height: <span>?</span></span>
-                    </div>
-                    <span class="modal mt-4">Number of subimages: <span>?</span></span>
-                </div>
-
-                <div class="modal flex-column mt-64">
-                    <fieldset class="modal col-fieldset">
-                        <legend class="modal">Origin:</legend>
-                        <div class="modal flex-row-evenly">
-                            <span class="modal">X <input type="number" class="modal small-number-input" value="0" /></span>
-                            <span class="modal">Y <input type="number" class="modal small-number-input" value="0" /></span>
-                        </div>
-                        <button type="button" class="modal btn btn-small mt-8">Center</button>
-                    </fieldset>
-                </div>
-
-                <button type="button" class="modal btn btn-primary mt-8">
-                    <img src="./assets/images/icon_okay.png" alt="" class="modal" />
-                    OK
-                </button>
-            </div>
-            <div class="modal col-192">
-                <div class="modal flex-column">
-                    <fieldset class="modal col-fieldset w-full">
-                        <legend class="modal">Collision Checking:</legend>
-                        <div class="modal flex-column align-start">
-                            <label class="modal">
-                                <input type="checkbox" class="modal" checked />
-                                <span class="modal">Precise collision checking</span>
-                            </label>
-                            <label class="modal mt-8">
-                                <input type="checkbox" class="modal" />
-                                <span class="modal">Separate collision masks</span>
-                            </label>
-                        </div>
-                        <button type="button" class="modal btn mt-32">
-                            <img src="./assets/images/icon_settings.png" alt="" class="modal" />
-                            Modify Mask
+                    <div class="modal flex-column mt-8">
+                        <button type="button" class="modal btn">
+                            <img src="./assets/images/icon_open.png" alt="" class="modal" />
+                            Load Sprite
                         </button>
-                    </fieldset>
+
+                        <button type="button" class="modal btn mt-8">
+                            <img src="./assets/images/icon_save.png" alt="" class="modal" />
+                            Save Sprite
+                        </button>
+
+                        <button type="button" class="modal btn mt-8">
+                            <img src="./assets/images/icon_background.png" alt="" class="modal" />
+                            Edit Sprite
+                        </button>
+                    </div>
+
+                    <div class="modal flex-column mt-16">
+                        <div class="modal flex-row-evenly">
+                            <span class="modal">Width: <span>?</span></span>
+                            <span class="modal">Height: <span>?</span></span>
+                        </div>
+                        <span class="modal mt-4">Number of subimages: <span>?</span></span>
+                    </div>
+
+                    <div class="modal flex-column mt-64">
+                        <fieldset class="modal col-fieldset">
+                            <legend class="modal">Origin:</legend>
+                            <div class="modal flex-row-evenly">
+                                <span class="modal">X <input type="number" class="modal small-number-input" value="0" /></span>
+                                <span class="modal">Y <input type="number" class="modal small-number-input" value="0" /></span>
+                            </div>
+                            <button type="button" class="modal btn btn-small mt-8">Center</button>
+                        </fieldset>
+                    </div>
+
+                    <button type="button" class="modal btn btn-primary mt-8">
+                        <img src="./assets/images/icon_okay.png" alt="" class="modal" />
+                        OK
+                    </button>
+                </div>
+                <div class="modal col-192">
+                    <div class="modal flex-column">
+                        <fieldset class="modal col-fieldset w-full">
+                            <legend class="modal">Collision Checking:</legend>
+                            <div class="modal flex-column align-start">
+                                <label class="modal">
+                                    <input type="checkbox" class="modal" checked />
+                                    <span class="modal">Precise collision checking</span>
+                                </label>
+                                <label class="modal mt-8">
+                                    <input type="checkbox" class="modal" />
+                                    <span class="modal">Separate collision masks</span>
+                                </label>
+                            </div>
+                            <button type="button" class="modal btn mt-32">
+                                <img src="./assets/images/icon_settings.png" alt="" class="modal" />
+                                Modify Mask
+                            </button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="modal col-outer flex-row flex-fit-width align-start justify-start p-0">
+                <div class="modal preview-block">
+                    <img src="./assets/images/icon_okay.png" alt="" />
                 </div>
             </div>
         </div>
