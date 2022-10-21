@@ -164,9 +164,9 @@
         &.maximized:not(.minimized) {
             box-sizing: border-box;
             left: 0 !important;
-            top: 28px !important;
+            top: 0 !important;
             width: 100%;
-            height: calc(100% - 28px);
+            height: 100%;
             border-radius: 0;
             border: 0;
             padding: 0;

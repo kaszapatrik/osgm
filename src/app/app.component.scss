@@ -103,7 +103,7 @@
         -webkit-appearance: none;
         margin: 0;
     }
-    input[type=number] {
+    input[type="number"] {
         -moz-appearance: textfield;
     }
 
@@ -115,11 +115,15 @@
             font-size: 12px;
             width: 128px;
         }
+
+        &[type="checkbox"] {
+            margin-right: 4px;
+        }
     }
 
     fieldset {
         padding: 6px;
-        border: 2px groove #FFF;
+        border: 2px groove rgba(255, 255, 255, 0.5);
 
         legend {
             padding: 0 4px;
@@ -143,17 +147,27 @@
     .flex-row {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .flex-row-evenly {
+        display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
         width: 100%;
     }
+
+    .align-start { align-items: flex-start; }
+    .justify-start { justify-content: flex-start; }
 
     button.btn {
         display: inline-flex;
         align-items: center;
         justify-content: flex-start;
         width: auto;
-        min-width: 160px;
+        min-width: 128px;
         text-align: left;
         padding: 4px;
         font-size: 12px;
@@ -183,6 +197,7 @@
     .mt-4 { margin-top: 4px; }
     .mt-8 { margin-top: 8px; }
     .mt-16 { margin-top: 16px; }
+    .mt-32 { margin-top: 32px; }
     .mt-64 { margin-top: 64px; }
     .mb-8 { margin-bottom: 8px; }
     .mr-8 { margin-right: 8px; }
@@ -190,13 +205,15 @@
     .p-4 { padding: 4px; }
 
     .col-fieldset { width: calc(100% - 64px); }
+    .w-full { width: calc(100% - 16px); box-sizing: border-box; }
     .small-number-input { width: 32px !important; }
+    .separator-r { border-right: 1px solid rgba(0, 0, 0, 0.3); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.3); }
 
     button.btn-small {
         display: inline-block;
         padding: 1px;
         width: auto;
-        min-width: 96px;
+        min-width: 80px;
         text-align: center;
     }
 
@@ -206,7 +223,7 @@
         border-color: rgb(73, 147, 196);
         box-shadow: 1px 1px 0px rgba(120, 189, 228, 0.8) inset, -1px -1px 0px rgba(120, 189, 228, 0.8) inset;
         width: auto;
-        min-width: 112px;
+        min-width: 96px;
 
         img {
             width: auto;

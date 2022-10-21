@@ -97,7 +97,7 @@ export class ModalComponent implements OnInit {
       if (event.clientY !== 0) {
         const modalHeaderHeight = 29,
           heightLimit = (parentElement?.offsetHeight ?? window.innerHeight) - modalHeaderHeight - 1;
-        modal['positionY'] = Math.max(28, Math.min(heightLimit, event.clientY + this.dragY));
+        modal['positionY'] = Math.max(0, Math.min(heightLimit, event.clientY + this.dragY));
       }
     }
   }
@@ -113,7 +113,7 @@ export class ModalComponent implements OnInit {
         
         const modalHeaderHeight = 29,
           heightLimit = (parentElement?.offsetHeight ?? window.innerHeight) - modalHeaderHeight - 1;
-        modal['positionY'] = Math.max(28, Math.min(heightLimit, modal['positionY']));
+        modal['positionY'] = Math.max(0, Math.min(heightLimit, modal['positionY']));
     }
   }
 
@@ -122,9 +122,9 @@ export class ModalComponent implements OnInit {
       modalElement = this.getModalElement(index),
       parentElement = this.getParentElement(index),
       parentElementWidth = parentElement?.offsetWidth ?? window.innerWidth,
-      parentElementHeight = parentElement?.offsetHeight ?? window.innerHeight,
+      parentElementHeight = parentElement !== null ? parentElement.offsetHeight + 29 : window.innerHeight,
       shiftX = this.modalPositionShift * (parentElementWidth * 0.05),
-      shiftY = this.modalPositionShift * (parentElementHeight * 0.05);
+      shiftY = this.modalPositionShift * (parentElementHeight * 0.04);
 
     modal['positionX'] = parentElementWidth / 2 - (modalElement?.offsetWidth ?? 0) / 2 + shiftX;
     modal['positionY'] = parentElementHeight / 2 - (modalElement?.offsetHeight ?? 0) / 2 + shiftY;
