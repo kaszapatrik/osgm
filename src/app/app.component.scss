@@ -119,6 +119,10 @@
         &[type="checkbox"] {
             margin-right: 4px;
         }
+
+        &[type="file"] {
+            display: none;
+        }
     }
 
     fieldset {
@@ -181,7 +185,7 @@
     .align-start { align-items: flex-start; }
     .justify-start { justify-content: flex-start; }
 
-    button.btn {
+    button.btn, .button.btn {
         display: inline-flex;
         align-items: center;
         justify-content: flex-start;
@@ -195,6 +199,7 @@
         background-color: #C8C8C8;
         background: linear-gradient(to bottom, rgb(235, 235, 235) 0%, rgb(240, 240, 240) 49%, rgb(220, 220, 220) 51%, rgb(210, 210, 210) 100%);
         box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5) inset, -1px -1px 1px rgba(255, 255, 255, 0.5) inset;
+        box-sizing: border-box;
 
         &:hover {
             background: linear-gradient(to bottom, rgb(234, 241, 250) 0%, rgb(210, 236, 255) 49%, rgb(180, 222, 251) 51%, rgb(170, 212, 237) 100%);
@@ -229,7 +234,7 @@
     .small-number-input { width: 32px !important; }
     .separator-r { border-right: 1px solid rgba(0, 0, 0, 0.3); box-shadow: 1px 0 0 rgba(255, 255, 255, 0.6); }
 
-    button.btn-small {
+    button.btn-small, .button.btn-small {
         display: inline-block;
         padding: 1px;
         width: auto;
@@ -237,7 +242,7 @@
         text-align: center;
     }
 
-    button.btn-primary {
+    button.btn-primary, .button.btn-primary {
         text-align: center;
         justify-content: center;
         border-color: rgb(73, 147, 196);

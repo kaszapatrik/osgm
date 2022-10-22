@@ -52,10 +52,15 @@
                     </label>
 
                     <div class="modal flex-column mt-8">
-                        <button type="button" class="modal btn">
+                        <label class="modal button btn">
                             <img src="./assets/images/icon_open.png" alt="" class="modal" />
                             Load Sprite
-                        </button>
+                        
+                            <input type="file" accept="image/png, .jpg, .jpeg"
+                                class="modal"
+                                (change)="resourceSetImageUrl(modal['resource'], 'details.url', $event)"
+                            />
+                        </label>
 
                         <button type="button" class="modal btn mt-8">
                             <img src="./assets/images/icon_save.png" alt="" class="modal" />

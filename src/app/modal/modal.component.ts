@@ -249,4 +249,19 @@ export class ModalComponent implements OnInit {
 
     this.getPropertyByString(resource, property, value);
   }
+
+  public resourceSetImageUrl(resource : any, property : string, event : Event) : void {
+    let value : string = '';
+
+    if (event !== null) {
+      const target = event.target as HTMLInputElement;
+      if (target.files !== null) {
+        // TODO fileReader and get the image instead of name and other properties
+        console.log(target.files[0]);
+        value = target.files[0].name;
+      }
+    }
+
+    this.getPropertyByString(resource, property, value);
+  }
 }
