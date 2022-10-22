@@ -218,6 +218,24 @@ export class ModalComponent implements OnInit {
     return this.selectedModalId;
   }
 
+  private getPropertyByString(reference : any, property : string, value ?: any) : any {
+    const separatorIndex = property.indexOf('.'),
+      isLastProperty = separatorIndex === -1;
+    
+    // set value of property
+    if (typeof value !== 'undefined' && isLastProperty) {
+        reference[property] = value;
+    }
+
+    const result = typeof reference === 'object' && !Array.isArray(reference)
+      ? (property.indexOf('.') > -1
+        ? this.getPropertyByString(reference[property.substring(0, separatorIndex)], property.substring(separatorIndex + 1), value ?? undefined)
+        : reference[property]
+      ) : reference;
+    
+    return result;
+  }
+
   // TODO resource interface
   public resourceSetProperty(resource : any, property : string, event : Event) : void {
     let value : string = '';
@@ -229,8 +247,6 @@ export class ModalComponent implements OnInit {
       }
     }
 
-    if (typeof resource[property] !== 'undefined') {
-      resource[property] = value;
-    }
+    this.getPropertyByString(resource, property, value);
   }
 }

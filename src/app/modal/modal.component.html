@@ -80,8 +80,20 @@
                         <fieldset class="modal col-fieldset">
                             <legend class="modal">Origin:</legend>
                             <div class="modal flex-row-evenly">
-                                <span class="modal">X <input type="number" class="modal small-number-input" value="0" /></span>
-                                <span class="modal">Y <input type="number" class="modal small-number-input" value="0" /></span>
+                                <span class="modal">
+                                    X <input type="number" class="modal small-number-input"
+                                        [value]="modal['resource'] !== null ? modal['resource']['details']['origin']['x'] : ''"
+                                        (change)="resourceSetProperty(modal['resource'], 'details.origin.x', $event)"
+                                        (keyup)="resourceSetProperty(modal['resource'], 'details.origin.x', $event)"
+                                    />
+                                </span>
+                                <span class="modal">
+                                    Y <input type="number" class="modal small-number-input"
+                                        [value]="modal['resource'] !== null ? modal['resource']['details']['origin']['y'] : ''"
+                                        (change)="resourceSetProperty(modal['resource'], 'details.origin.y', $event)"
+                                        (keyup)="resourceSetProperty(modal['resource'], 'details.origin.y', $event)"
+                                    />
+                                </span>
                             </div>
                             <button type="button" class="modal btn btn-small mt-8">Center</button>
                         </fieldset>

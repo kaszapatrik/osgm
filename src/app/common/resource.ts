@@ -3,11 +3,13 @@ import { ResourceInterface } from "./resourceinterface";
 export class Resource {
     private data : ResourceInterface;
 
-    public constructor(id : number, title : string, image : string | null) {
+    public constructor(id : number, title : string, resourceType : string, icon : string | null, details : {[key : string] : any} = {}) {
         this.data = {
             id: id,
             title: title,
-            image: image,
+            resourceType: resourceType,
+            icon: icon,
+            details: details
         };
     }
 }

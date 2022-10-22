@@ -1,6 +1,8 @@
 export interface ResourceInterface {
     id : number;
     title : string;
-    image : string | null;
+    icon : string | null;
+    resourceType : string;
+    details : {[key : string] : any};
     uniqueId ?: string;
 }

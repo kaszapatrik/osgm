@@ -106,6 +106,29 @@ export class ResourceList {
         return name !== '' ? `${name}${id}` : '';
     }
 
+    private getResourceDetailsByGroupName(groupName : string) : any {
+        const details : {[key : string] : any} = {};
+
+        switch (groupName) {
+            case 'sprites': {
+                details['url'] = null;
+                details['image'] = new Image();
+                details['width'] = 0;
+                details['height'] = 0;
+                details['origin'] = { x: 0, y: 0 };
+
+                details['image'].onload = () => {
+                    details['width'] = details['image'].naturalWidth;
+                    details['height'] = details['image'].naturalHeight;
+                };
+
+                break;
+            }
+        }
+
+        return details;
+    }
+
     public addItem(groupName : string, item : {[key : string] : any} = {}) : void {
         this.insertItem(groupName, null, item);
     }
@@ -125,9 +148,12 @@ export class ResourceList {
             item['title'] = this.getGroupItemName(groupName, item['id']);
         }
 
-        if (!item.hasOwnProperty('image')) {
-            item['image'] = this.getGroupIconImage(groupName);
+        if (!item.hasOwnProperty('icon')) {
+            item['icon'] = this.getGroupIconImage(groupName);
         }
+
+        item['resourceType'] = groupName;
+        item['details'] = this.getResourceDetailsByGroupName(groupName);
 
         if (otherItemId !== null) {
             const index = this.getItemIndex(groupName, otherItemId);
