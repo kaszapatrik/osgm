@@ -206,13 +206,22 @@
         align-items: flex-start;
         justify-content: flex-start;
         width: auto;
-        max-width: 100%;
+        // TODO better solution with js calc
+        max-width: 246px;
         height: auto;
-        max-height: 100%;
+        // TODO better solution with js calc
+        max-height: 340px;
         overflow: auto;
         
         img {
             background: transparent url('../../assets/images/background_transparent.png') repeat 0px 0px / 32px 32px;
         }
+    }
+
+    .modal-container.maximized .preview-block {
+        // TODO better solution with js calc
+        max-width: calc(100vw - 586px);
+        // TODO better solution with js calc
+        max-height: 340px;
     }
 }
