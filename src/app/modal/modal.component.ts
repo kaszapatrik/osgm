@@ -241,6 +241,10 @@ export class ModalComponent implements OnInit {
     if (event !== null) {
       const target = event.target as HTMLInputElement;
       if (typeof target.value === 'string') {
+        if (property === 'details.origin.x' || property === 'details.origin.y') {
+          target.value = isNaN(parseInt(target.value)) ? '0' : `${parseInt(target.value)}`;
+        }
+
         value = target.value;
       }
     }
@@ -283,6 +287,11 @@ export class ModalComponent implements OnInit {
         // when image loaded, add the source to the resource
         imageSrc.then((result : string | null) => {
           if (typeof result === 'string') {
+            resourceImage.onload = () => {
+              this.getPropertyByString(resource, 'details.width', resourceImage.width);
+              this.getPropertyByString(resource, 'details.height', resourceImage.height);
+            };
+            
             resourceImage.src = result;
           }
         });
@@ -290,5 +299,14 @@ export class ModalComponent implements OnInit {
     }
 
     this.getPropertyByString(resource, property, value);
+  }
+
+  public resourceSetOrigin(resource : any, property : string) : void {
+    const resourceDetails = this.getPropertyByString(resource, property),
+      width = resourceDetails.width,
+      height = resourceDetails.height;
+    
+    this.getPropertyByString(resource, `${property}.origin.x`, Math.floor(width / 2));
+    this.getPropertyByString(resource, `${property}.origin.y`, Math.floor(height / 2));
   }
 }

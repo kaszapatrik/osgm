@@ -117,6 +117,14 @@ export class ResourceList {
                 details['height'] = 0;
                 details['origin'] = { x: 0, y: 0 };
 
+                details['subimages'] = {
+                    list: [],
+                    width: 0,
+                    height: 0,
+                    count: 0,
+                    // TODO horizontal/vertical separator, columns
+                };
+
                 details['image'].onload = () => {
                     details['width'] = details['image'].naturalWidth;
                     details['height'] = details['image'].naturalHeight;

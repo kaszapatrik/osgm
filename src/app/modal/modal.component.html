@@ -75,10 +75,16 @@
 
                     <div class="modal flex-column mt-16">
                         <div class="modal flex-row-evenly">
-                            <span class="modal">Width: <span>?</span></span>
-                            <span class="modal">Height: <span>?</span></span>
+                            <span class="modal">Width:
+                                <span>{{ getPropertyByString(modal['resource'], 'details.width') ?? 0 }}</span>
+                            </span>
+                            <span class="modal">Height: 
+                                <span>{{ getPropertyByString(modal['resource'], 'details.height') ?? 0 }}</span>
+                            </span>
                         </div>
-                        <span class="modal mt-4">Number of subimages: <span>?</span></span>
+                        <span class="modal mt-4">Number of subimages: 
+                            <span>{{ getPropertyByString(modal['resource'], 'details.subimages.count') ?? 0 }}</span>
+                        </span>
                     </div>
 
                     <div class="modal flex-column mt-64">
@@ -100,7 +106,11 @@
                                     />
                                 </span>
                             </div>
-                            <button type="button" class="modal btn btn-small mt-8">Center</button>
+                            <button type="button" class="modal btn btn-small mt-8"
+                                (click)="resourceSetOrigin(modal['resource'], 'details')"
+                            >
+                                Center
+                            </button>
                         </fieldset>
                     </div>
 
