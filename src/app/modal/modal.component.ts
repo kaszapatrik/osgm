@@ -186,8 +186,6 @@ export class ModalComponent implements OnInit {
 
     if (typeof this.openModalsList[index] !== 'undefined') {
       this.openModalsList[index]['isMinimized'] = !this.openModalsList[index]['isMinimized'];
-
-      console.log(this.openModalsList[index]);
     }
   }
 
@@ -218,7 +216,7 @@ export class ModalComponent implements OnInit {
     return this.selectedModalId;
   }
 
-  private getPropertyByString(reference : any, property : string, value ?: any) : any {
+  public getPropertyByString(reference : any, property : string, value ?: any) : any {
     const separatorIndex = property.indexOf('.'),
       isLastProperty = separatorIndex === -1;
     
@@ -250,15 +248,44 @@ export class ModalComponent implements OnInit {
     this.getPropertyByString(resource, property, value);
   }
 
+  // TODO promise interface
+  /**
+   * read async any image file 
+   */
+  public readImageFile(file : File) : any {
+      return new Promise((resolve : any, reject : any) => {
+          const reader = new FileReader();
+
+          reader.onload = event => resolve(event.target?.result);
+          reader.onerror = () => reject(null);
+
+          reader.readAsDataURL(file);
+      });
+  }
+
+  // TODO type of resource param
+  /**
+   * set the image to the resource from a (base64 encoded source) file
+   * @param resource 
+   * @param property 
+   * @param event 
+   */
   public resourceSetImageUrl(resource : any, property : string, event : Event) : void {
     let value : string = '';
 
     if (event !== null) {
       const target = event.target as HTMLInputElement;
       if (target.files !== null) {
-        // TODO fileReader and get the image instead of name and other properties
-        console.log(target.files[0]);
-        value = target.files[0].name;
+        const resourceImage = this.getPropertyByString(resource, 'details.image'),
+          file = target.files[0],
+          imageSrc = this.readImageFile(file);
+        
+        // when image loaded, add the source to the resource
+        imageSrc.then((result : string | null) => {
+          if (typeof result === 'string') {
+            resourceImage.src = result;
+          }
+        });
       }
     }
 

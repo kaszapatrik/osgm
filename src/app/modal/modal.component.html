@@ -104,7 +104,9 @@
                         </fieldset>
                     </div>
 
-                    <button type="button" class="modal btn btn-primary mt-8">
+                    <button type="button" class="modal btn btn-primary mt-8"
+                        (click)="modalClose(i, $event)"
+                    >
                         <img src="./assets/images/icon_okay.png" alt="" class="modal" />
                         OK
                     </button>
@@ -133,7 +135,10 @@
             </div>
             <div class="modal col-outer flex-row flex-fit-width align-start justify-start p-0">
                 <div class="modal preview-block">
-                    <img src="./assets/images/icon_okay.png" alt="" />
+                    <img
+                        [src]="getPropertyByString(modal['resource'], 'details.image.src')"
+                        alt="" 
+                    />
                 </div>
             </div>
         </div>

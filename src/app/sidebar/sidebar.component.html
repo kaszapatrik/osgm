@@ -19,7 +19,10 @@
                     [attr.data-unique-id]="listElement.name + item.id"
                     [class.selected]="listElement.name + item.id === sidebarListInstance.getSelectedItem()"
                 >
-                    <div class="item icon-block" [style.background-image]="item.image !== null ? 'url(' + item.image + ')' : 'none'"></div>
+                    <!-- FIXME BETTER SOLUTION, THAT SRC-KEEPING IS TOO SLOW WITH MANY OR BIG IMAGES -->
+                    <div class="item icon-block"
+                        [style.background-image]="item?.details?.image?.src !== '' ? 'url(' + item?.details?.image?.src + ')' : 'none'"
+                    ></div>
                     <span class="item item-name">{{item.title}}</span>
                 </li>
             </ul>
